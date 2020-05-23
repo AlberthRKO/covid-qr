@@ -46,25 +46,25 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="#home-section" class="nav-link text-white"><span>Home</span></a></li>
-					<li class="nav-item"><a href="#about-section" class="nav-link text-white"><span>About</span></a>
+					<li class="nav-item"><a href="#home-section" class="nav-link text-white"><span>Inicio</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link text-white"><span>Acerca de</span></a>
 					</li>
-					<li class="nav-item"><a href="#department-section"
-							class="nav-link text-white"><span>Department</span></a></li>
-					<li class="nav-item"><a href="#doctor-section" class="nav-link text-white"><span>Doctors</span></a>
+					<li class="nav-item"><a href="#casos"
+							class="nav-link text-white"><span>Estado Covid</span></a></li>
+					<li class="nav-item"><a href="#doctor-section" class="nav-link text-white"><span>Sintomas</span></a>
 					</li>
-					<li class="nav-item"><a href="#blog-section" class="nav-link text-white"><span>Blog</span></a></li>
-					<li class="nav-item"><a href="#contact-section" class="nav-link text-white"><span>Contact</span></a>
+					<li class="nav-item"><a href="#blog-section" class="nav-link text-white"><span>Prevencion</span></a></li>
+					<li class="nav-item"><a href="#contact-section" class="nav-link text-white"><span>Contactanos</span></a>
 					</li>
-					<li class="nav-item cta mr-md-2"><a href="login.html" class="nav-link font-weight-bold">Iniciar
+					<li class="nav-item cta" style="margin-top: 2px;"><a href="login.html" class="nav-link font-weight-bold">Iniciar
 							Sesión</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<section class="hero-wrap js-fullheight" style="background-image: url('images/bg-3.jpg');" data-section="home"
-		data-stellar-background-ratio="0.5">
+	<section id="cabecera" class="hero-wrap js-fullheight" style="background-image: url('images/bg-3.jpg');"
+		data-section="home" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
@@ -72,12 +72,13 @@
 				<div class="col-md-6 pt-0 ftco-animate">
 					<div class="mt-0">
 						<span class="subheading">Bienvenido a Covid-QR</span>
-						<h1 class="mb-4 text-white">Escanea un QR para saber que<br>personas infectadas hay a tu
+						<h1 class="mb-4 text-white titulo">Escanea un QR para saber que<br>personas infectadas hay a tu
 							alrededor</h1>
-						<p class="mb-4 text-white">Far far away, behind the word mountains, far from the countries
-							Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
+						<p class="mb-4 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aut
+							tempora laudantium repellat blanditiis expedita odio, velit nisi mollitia eaque quasi
+							officia vitae dolores?
 						</p>
-						<p><a href="#" class="btn btn-primary py-3 px-4">Make an appointment</a></p>
+						<p><a href="#" class="btn btn-primary py-3 px-4">Comienza a Escanear</a></p>
 					</div>
 				</div>
 			</div>
@@ -85,7 +86,36 @@
 	</section>
 
 
-	<section id="casos" class="pb-3" data-aos="zoom-in-up" data-aos-duration="1500">
+	<section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="col-md-8 col-lg-6 d-flex position-relative covidCont" data-aos="fade-right">
+					<div class="img d-flex align-self-stretch align-items-center imagensita mx-auto"
+						style="background-image:url(images/infected.png);">
+					</div>
+					<img src="images/lectorQR.png" alt="lector" class="lectorsito">
+				</div>
+				<div class="col-md-10 col-lg-6  py-md-0" data-aos="fade-left">
+					<div class="py-md-5">
+						<div class="row justify-content-start pb-0">
+							<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
+								<h2 class="mb-4">Informate quienes tienen <span>Coronavirus</span> a tu alrededor</h2>
+								<p>A small river named Duden flows by their place and supplies it with the necessary
+									regelialia. It is a paradisematic country, in which roasted parts of sentences fly
+									into your mouth. It is a paradisematic country, in which roasted parts of sentences
+									fly into your mouth.</p>
+								<p><a href="#" class="btn btn-primary py-3 px-4">Escanea un QR</a> <a href="#"
+										class="btn btn-secondary py-3 px-4">Contactanos</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="casos" class="pb-3 pt-4 " data-aos="zoom-in-up" data-aos-duration="1500">
 		<div class="container">
 			<h3 class="text-center mb-3 font-weight-bold">Estado global de coronavirus en Bolivia</h3>
 			<p class="text-center font-weight-bold">Hasta el <span class="text-primary ml-2" id="fechaCovid2"></span>
@@ -131,21 +161,24 @@
 
 				<div class="col-10 col-md-12 col-lg-4 mx-auto mx-lg-0">
 					<div class="row">
-						<div class="col-12 col-md-5 col-lg-12 d-flex align-items-center contentEstado px-4 px-md-3 px-lg-5 py-4 mb-4 mx-auto">
+						<div
+							class="col-12 col-md-5 col-lg-12 d-flex align-items-center contentEstado px-4 px-md-3 px-lg-5 py-4 mb-4 mx-auto">
 							<img src="images/estados/infected.png" alt="" class="img-fluid image" width="100">
 							<div class="estilo-estados ml-3">
 								<h4 class="mb-0 pb-0 font-weight-bold text-primary h2" id="nConfirmadosAhora"></h4>
 								<p>Confirmados</p>
 							</div>
 						</div>
-						<div class="col-12 col-md-5 col-lg-12 d-flex align-items-center contentEstado px-4 px-md-3 px-lg-5 py-4 mb-4 mx-auto">
+						<div
+							class="col-12 col-md-5 col-lg-12 d-flex align-items-center contentEstado px-4 px-md-3 px-lg-5 py-4 mb-4 mx-auto">
 							<img src="images/estados/recovered.png" alt="" class="img-fluid image" width="100">
 							<div class="estilo-estados ml-3">
 								<h4 class="mb-0 pb-0 font-weight-bold text-warning h2" id="nConfirmadosAhoraS"></h4>
 								<p>Sospechosos</p>
 							</div>
 						</div>
-						<div class="col-12 col-md-5 col-lg-12 d-flex align-items-center contentEstado px-4 px-md-3 px-lg-5 py-4 mb-4 mb-lg-0 mx-auto">
+						<div
+							class="col-12 col-md-5 col-lg-12 d-flex align-items-center contentEstado px-4 px-md-3 px-lg-5 py-4 mb-4 mb-lg-0 mx-auto">
 							<img src="images/estados/deaths.png" alt="" class="img-fluid image" width="100">
 							<div class="estilo-estados ml-3">
 								<h4 class="mb-0 pb-0 font-weight-bold text-danger h2" id="nConfirmadosAhoraM"></h4>
@@ -188,40 +221,12 @@
 	</section>
 
 
-
-	<section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="col-md-8 col-lg-6 d-flex position-relative covidCont" data-aos="fade-right">
-					<div class="img d-flex align-self-stretch align-items-center imagensita mx-auto"
-						style="background-image:url(images/infected.png);">
-					</div>
-					<img src="images/lectorQR.png" alt="lector" class="lectorsito">
-				</div>
-				<div class="col-md-10 col-lg-6  py-md-0" data-aos="fade-left">
-					<div class="py-md-5">
-						<div class="row justify-content-start pb-0">
-							<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
-								<h2 class="mb-4">Informate quienes tienen <span>Coronavirus</span> a tu alrededor</h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-									into your mouth. It is a paradisematic country, in which roasted parts of sentences
-									fly into your mouth.</p>
-								<p><a href="#" class="btn btn-primary py-3 px-4">Escanea un QR</a> <a href="#"
-										class="btn btn-secondary py-3 px-4">Contactanos</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	<!-- Tabla Blanca -->
 	<section id="tablas" class="py-5">
 		<div class="container">
 			<h3 class="text-center mb-3 font-weight-bold">Detalles especificos de coronavirus en Bolivia</h3>
-			<p class="text-center font-weight-bold">Hasta el <span class="text-primary ml-2" id="fechaCovid"></span> <br>
+			<p class="text-center font-weight-bold">Hasta el <span class="text-primary ml-2" id="fechaCovid"></span>
+				<br>
 				<!-- <a class="btn btn-primary w-25 text-center mt-3" id="botonCapo">Obtener Información</a> -->
 			</p>
 			<div class="row">
