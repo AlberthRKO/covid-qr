@@ -14,12 +14,12 @@ $(document).ready(function () {
         let sumaFinalR=0;
         let sumaFinalM=0;
         for(let pacientes of Object.keys(data['confirmados'][0]['dep'])){
-            let numeros = data['confirmados'][1]['dep'][pacientes];
-            let numerosAnt = data['confirmados'][2]['dep'][pacientes];
-            let numerosR = data['recuperados'][1]['dep'][pacientes];
-            let numerosAntR = data['recuperados'][2]['dep'][pacientes];
+            let numeros = data['confirmados'][0]['dep'][pacientes];
+            let numerosAnt = data['confirmados'][1]['dep'][pacientes];
+            let numerosR = data['recuperados'][0]['dep'][pacientes];
+            let numerosAntR = data['recuperados'][1]['dep'][pacientes];
             let numerosM = data['decesos'][1]['dep'][pacientes];
-            let numerosAntM = data['decesos'][2]['dep'][pacientes];
+            let numerosAntM = data['decesos'][1]['dep'][pacientes];
             // console.log(pacientes,numeros)
             
             // conteo de Confirmados
@@ -58,14 +58,28 @@ $(document).ready(function () {
         let suma=0;
         let suma2=0;
         for(let pacientes of Object.keys(data['confirmados'][0]['dep'])){
-            let numeros = data['confirmados'][1]['dep'][pacientes];
-            let numerosAnt = data['confirmados'][2]['dep'][pacientes]
+            let numeros = data['confirmados'][0]['dep'][pacientes];
+            let numerosAnt = data['confirmados'][1]['dep'][pacientes]
             // console.log(pacientes,numeros)
             
             suma += numeros;
             suma2 += numerosAnt;
             
         }
+
+        // Aprobar 
+        /* let conteoFinal= suma - suma2
+        if(conteoFinal<=0){
+            for(let pacientes of Object.keys(data['confirmados'][0]['dep'])){
+                let numeros = data['confirmados'][1]['dep'][pacientes];
+                let numerosAnt = data['confirmados'][2]['dep'][pacientes]
+                // console.log(pacientes,numeros)
+                
+                suma += numeros;
+                suma2 += numerosAnt;
+                
+            }
+        } */
         // console.log(suma)
         // console.log(suma-suma2)
         confirmadosAhora.innerHTML = `${suma-suma2}`
@@ -80,8 +94,8 @@ $(document).ready(function () {
         let suma=0;
         let suma2=0;
         for(let pacientes of Object.keys(data['recuperados'][0]['dep'])){
-            let numeros = data['recuperados'][1]['dep'][pacientes];
-            let numerosAnt = data['recuperados'][2]['dep'][pacientes]
+            let numeros = data['recuperados'][0]['dep'][pacientes];
+            let numerosAnt = data['recuperados'][1]['dep'][pacientes]
             // console.log(pacientes,numeros)
             
             suma += numeros;
@@ -101,8 +115,8 @@ $(document).ready(function () {
         let suma=0;
         let suma2=0;
         for(let pacientes of Object.keys(data['decesos'][0]['dep'])){
-            let numeros = data['decesos'][1]['dep'][pacientes];
-            let numerosAnt = data['decesos'][2]['dep'][pacientes]
+            let numeros = data['decesos'][0]['dep'][pacientes];
+            let numerosAnt = data['decesos'][1]['dep'][pacientes]
             // console.log(pacientes,numeros)
             
             suma += numeros;
