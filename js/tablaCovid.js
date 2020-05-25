@@ -1,46 +1,40 @@
 
 $(document).ready(function () {
 
+
+
+
+    // llenado de tabla actual
     fetch('https://mauforonda.github.io/covid19-bolivia/data.json')
     .then(res => res.json())
     .then(data => {
         
         let confirmadosAhora = document.querySelector('#tablaAhora')
-        let suma=0;
-        let suma2=0;
         let sumaFinal=0;
-        let sumaS=0;
-        let suma2S=0;
-        let sumaFinalS=0;
-        let sumaM=0;
-        let suma2M=0;
+        let sumaFinalR=0;
         let sumaFinalM=0;
         for(let pacientes of Object.keys(data['confirmados'][0]['dep'])){
-            let numeros = data['confirmados'][0]['dep'][pacientes];
-            let numerosAnt = data['confirmados'][1]['dep'][pacientes];
-            let numerosS = data['sospechosos'][0]['dep'][pacientes];
-            let numerosAntS = data['sospechosos'][1]['dep'][pacientes];
-            let numerosM = data['decesos'][0]['dep'][pacientes];
-            let numerosAntM = data['decesos'][1]['dep'][pacientes];
+            let numeros = data['confirmados'][1]['dep'][pacientes];
+            let numerosAnt = data['confirmados'][2]['dep'][pacientes];
+            let numerosR = data['recuperados'][1]['dep'][pacientes];
+            let numerosAntR = data['recuperados'][2]['dep'][pacientes];
+            let numerosM = data['decesos'][1]['dep'][pacientes];
+            let numerosAntM = data['decesos'][2]['dep'][pacientes];
             // console.log(pacientes,numeros)
             
-            suma += numeros;
-            suma2 += numerosAnt;
-            sumaFinal = suma - suma2
+            // conteo de Confirmados
+            sumaFinal = numeros - numerosAnt
 
-            sumaM += numerosM;
-            suma2M += numerosAntM;
-            sumaFinalM = sumaM - suma2M
-
-            sumaS += numerosS;
-            suma2S += numerosAntS;
-            sumaFinalS = sumaS - suma2S
+            // Conteo de muertos
+            sumaFinalM = numerosM - numerosAntM
+            // conteo de Recuperados
+            sumaFinalR = numerosR - numerosAntR
 
             confirmadosAhora.innerHTML += `		
                 <tr>
                     <th>${pacientes}</th>
                     <td>${sumaFinal}</td>
-                    <td>${sumaFinalS}</td>
+                    <td>${sumaFinalR}</td>
                     <td>${sumaFinalM}</td>
                 </tr>
             `
@@ -64,8 +58,8 @@ $(document).ready(function () {
         let suma=0;
         let suma2=0;
         for(let pacientes of Object.keys(data['confirmados'][0]['dep'])){
-            let numeros = data['confirmados'][0]['dep'][pacientes];
-            let numerosAnt = data['confirmados'][0]['dep'][pacientes]
+            let numeros = data['confirmados'][1]['dep'][pacientes];
+            let numerosAnt = data['confirmados'][2]['dep'][pacientes]
             // console.log(pacientes,numeros)
             
             suma += numeros;
@@ -76,6 +70,8 @@ $(document).ready(function () {
         // console.log(suma-suma2)
         confirmadosAhora.innerHTML = `${suma-suma2}`
     })
+
+
     fetch('https://mauforonda.github.io/covid19-bolivia/data.json')
     .then(res => res.json())
     .then(data => {
@@ -83,9 +79,9 @@ $(document).ready(function () {
         let confirmadosAhoraS = document.querySelector('#nConfirmadosAhoraS')
         let suma=0;
         let suma2=0;
-        for(let pacientes of Object.keys(data['sospechosos'][0]['dep'])){
-            let numeros = data['sospechosos'][0]['dep'][pacientes];
-            let numerosAnt = data['sospechosos'][1]['dep'][pacientes]
+        for(let pacientes of Object.keys(data['recuperados'][0]['dep'])){
+            let numeros = data['recuperados'][1]['dep'][pacientes];
+            let numerosAnt = data['recuperados'][2]['dep'][pacientes]
             // console.log(pacientes,numeros)
             
             suma += numeros;
@@ -96,6 +92,7 @@ $(document).ready(function () {
         // console.log(suma-suma2)
         confirmadosAhoraS.innerHTML = `${suma-suma2}`
     })
+
     fetch('https://mauforonda.github.io/covid19-bolivia/data.json')
     .then(res => res.json())
     .then(data => {
@@ -104,8 +101,8 @@ $(document).ready(function () {
         let suma=0;
         let suma2=0;
         for(let pacientes of Object.keys(data['decesos'][0]['dep'])){
-            let numeros = data['decesos'][0]['dep'][pacientes];
-            let numerosAnt = data['decesos'][1]['dep'][pacientes]
+            let numeros = data['decesos'][1]['dep'][pacientes];
+            let numerosAnt = data['decesos'][2]['dep'][pacientes]
             // console.log(pacientes,numeros)
             
             suma += numeros;

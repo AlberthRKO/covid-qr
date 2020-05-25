@@ -132,7 +132,10 @@ Seccion de Casos
         width: 100% !important;
     }
     #cabecera .titulo{
-        font-size: 2.5rem !important;
+        font-size: 1.8rem !important;
+    }
+    #cabecera .subtitulo{
+        font-size: .8rem !important;
     }
 }
 
