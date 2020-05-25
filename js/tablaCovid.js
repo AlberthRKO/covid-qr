@@ -18,7 +18,7 @@ $(document).ready(function () {
             let numerosAnt = data['confirmados'][1]['dep'][pacientes];
             let numerosR = data['recuperados'][0]['dep'][pacientes];
             let numerosAntR = data['recuperados'][1]['dep'][pacientes];
-            let numerosM = data['decesos'][1]['dep'][pacientes];
+            let numerosM = data['decesos'][0]['dep'][pacientes];
             let numerosAntM = data['decesos'][1]['dep'][pacientes];
             // console.log(pacientes,numeros)
             

@@ -121,6 +121,14 @@ Seccion de Casos
     vertical-align: middle;
 }
 
+td{
+    font-weight: 500;
+}
+th{
+    text-transform: uppercase;
+}
+
+
 
 
 
