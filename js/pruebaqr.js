@@ -1,7 +1,7 @@
 $('#qr').qrcode({
     render: 'div',
     fill: '#1620AC',
-    text: 'Tu ubicacion https://www.google.com/maps/@-19.0289818,-65.2501004,15z'
+    text: 'Hospitales en Sucre https://www.google.com/maps/search/Hospitales/@-19.0357544,-65.2600568,15z'
 });
 
 function mostrarqr() {
