@@ -1,29 +1,32 @@
-.ftco-navbar-light{
+.ftco-navbar-light {
     background: transparent !important;
 }
-.estilo-logo{
+.ftco-navbar-black {
+    background: rgb(255, 255, 255) !important;
+    box-shadow: 0px 0px 15px #000 !important;
+}
+.estilo-logo {
     color: white !important;
 }
-.cambio-logo{
+.cambio-logo {
     color: black !important;
 }
 
 .ftco-navbar-light.scrolled {
     box-shadow: 0px 0px 15px #000 !important;
-
 }
 
-.covidCont{
+.covidCont {
     overflow: hidden;
 }
 
-.imagensita{
+.imagensita {
     height: 410px !important;
     width: 90% !important;
     display: block;
     background-position: top center;
 }
-.lectorsito{
+.lectorsito {
     position: absolute;
     z-index: 10;
     width: 50%;
@@ -34,45 +37,53 @@
 /* sombra suave     box-shadow: -5px 20px 30px rgba(0, 0, 0, 0.15); */
 /* rotar img     */
 .image {
-    
-    -webkit-animation:spin 12s linear infinite;
-    -moz-animation:spin 12s linear infinite;
-    animation:spin 12s linear infinite;
+    -webkit-animation: spin 12s linear infinite;
+    -moz-animation: spin 12s linear infinite;
+    animation: spin 12s linear infinite;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
 
 /* ---------------------------------------
 Seccion de Casos
 --------------------------------------- */
-#casos{
+#casos {
     padding-top: 5rem !important;
 }
 
-.contentEstado{
-    
-    background: url('../images/estados/statistics-bg.jpg') center center;
+.contentEstado {
+    background: url("../images/estados/statistics-bg.jpg") center center;
     background-size: cover;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, .2) !important;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
-.estilo-estados p{
+.estilo-estados p {
     white-space: nowrap;
 }
 
-
-
-.estiloLogin{
-    background: url('../images/estados/statistics-bg.jpg') center center;
+.estiloLogin {
+    background: url("../images/estados/statistics-bg.jpg") center center;
     background-size: cover;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, .2) !important;
-
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
-.input-group-text{
+.input-group-text {
     background: transparent !important;
     border-right: 0 !important;
 }
-.inputsito{
+.inputsito {
     border-left: 0 !important;
 }
 .divider {
@@ -85,7 +96,7 @@ Seccion de Casos
 .divider .divider-text {
     position: relative;
     display: inline-block;
-    font-size: .9375rem;
+    font-size: 0.9375rem;
     padding: 0 1rem;
     background-color: #fff;
 }
@@ -95,72 +106,62 @@ Seccion de Casos
 .divider .divider-text::after {
     left: 100%;
 }
-.divider .divider-text:before, .divider .divider-text:after {
+.divider .divider-text:before,
+.divider .divider-text:after {
     content: "";
     position: absolute;
     top: 50%;
     width: 9999px;
-    border-top: 1px solid rgba(0, 0, 0, .3);
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
-
-
-
-
 
 /*-------------------------------------------
 3. Estilo para los tablas
 -------------------------------------------*/
 
-.estiloTabla{
-    background: url('../images/estados/statistics-bg.jpg') center center;
+.estiloTabla {
+    background: url("../images/estados/statistics-bg.jpg") center center;
     background-size: cover;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, .2) !important;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
 /* Alineamiento de tablas por el boton */
-#tablas tr td, #tablas tr th{
+#tablas tr td,
+#tablas tr th {
     vertical-align: middle;
 }
 
-th{
+th {
     text-transform: capitalize;
 }
 
-
-
-
-
-
-
-@media (max-width: 576px){
-    .imagensita{
+@media (max-width: 576px) {
+    .imagensita {
         height: 325px !important;
         width: 100% !important;
     }
-    #cabecera .titulo{
+    #cabecera .titulo {
         font-size: 1.8rem !important;
     }
-    #cabecera .subtitulo{
-        font-size: .8rem !important;
+    #cabecera .subtitulo {
+        font-size: 0.8rem !important;
     }
 }
 
-
-@media (max-width: 991.98px){
+@media (max-width: 991.98px) {
     .ftco-navbar-light {
-        background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.9)) !important;}
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)) !important;
+    }
 }
 
-
-@media (min-width: 992px){
-    .imagensita{
+@media (min-width: 992px) {
+    .imagensita {
         height: 490px !important;
     }
 }
 
-
-@media (min-width: 991.98px) and (max-width:1199.98px){
+@media (min-width: 991.98px) and (max-width: 1199.98px) {
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-        padding-left: .55rem !important;
-        padding-right: .55rem !important;
+        padding-left: 0.55rem !important;
+        padding-right: 0.55rem !important;
     }
 }
