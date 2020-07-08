@@ -46,12 +46,12 @@
             }
         }
 
-        public static function getByCI($ci){
+        public static function getByCiContrasena($ci,$contrasena){
             include('../connection.php');
-            $query = $db->prepare("SELECT * FROM usuarios WHERE CI=? AND ACTIVO='1'");
+            $query = $db->prepare("SELECT * FROM usuarios WHERE CI=? AND CONTRASENA=? AND ACTIVO='1'");
 
-            $query->bind_param("s", $email);
-            $user = null;
+            $query->bind_param("ss", $ci,$contrasena);
+            $usuario = null;
             //Ejecutamos la consulta
             if($query->execute()){
                 

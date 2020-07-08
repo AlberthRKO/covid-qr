@@ -16,9 +16,10 @@
       $usuario = new Usuario(1,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,'1');
       Usuario::insertar($usuario);
     break;
-    case "getByCI":
+    case "getByCiContrasena":
       $ci = $_POST['ci'];
-      $usuario = Usuario::getByCI($ci);
+      $contrasena = $_POST['contrasena'];
+      $usuario = Usuario::getByCiContrasena($ci,$contrasena);
       if($usuario != null)
         echo json_encode($usuario);
       else
