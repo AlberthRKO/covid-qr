@@ -32,5 +32,6 @@ function login(e){
         }
     });
     sessionStorage.ci = ci;
+    sessionStorage.contrasena = contrasena;
     window.location.href = "index.html";
 }
