@@ -51,8 +51,37 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text icon-user"></span>
                                         </div>
-                                        <input type="text" class="form-control inputsito" name="user" id="user"
-                                            placeholder="Nombre de Usuario">
+                                        <input type="text" class="form-control inputsito" name="nombres" id="nombres"
+                                            placeholder="Nombres">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-user"></span>
+                                        </div>
+                                        <input type="text" class="form-control inputsito" name="apellidos" id="apellidos"
+                                            placeholder="Apellidos">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-user"></span>
+                                        </div>
+                                        <input type="text" class="form-control inputsito" name="ci" id="ci"
+                                            placeholder="CI">
+                                        <select name="extension" id="extension">
+                                            <option value="CH.">CH.</option>
+                                            <option value="TJ.">TJ.</option>
+                                            <option value="PD.">PD.</option>
+                                            <option value="SC.">SC.</option>
+                                            <option value="LP.">LP.</option>
+                                            <option value="OR.">OR.</option>
+                                            <option value="CB.">CB.</option>
+                                            <option value="PO.">PO.</option>
+                                            <option value="BE.">BE.</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -64,24 +93,28 @@
                                             placeholder="Correo">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-lock"></span>
+                                <div id="alertaContrasena">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-lock"></span>
+                                            </div>
+                                            <input type="password" class="form-control inputsito" name="contrasena1" id="contrasena1"
+                                                placeholder="Contraseña">
                                         </div>
-                                        <input type="password" class="form-control inputsito" name="lock" id="lock"
-                                            placeholder="Contraseña">
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-lock2"></span>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-lock"></span>
+                                            </div>
+                                            <input type="password" class="form-control inputsito" name="contrasena2" id="contrasena2"
+                                                placeholder="Confirmar Contraseña">
                                         </div>
-                                        <input type="password" class="form-control inputsito" name="lock" id="lock"
-                                            placeholder="Confirmar Contraseña">
                                     </div>
+                                    <p id="alertaContrasenaMensaje" style="display:none;">LAS CONTRASEÑAS NO COINCIDEN</p>
                                 </div>
+
 
                                 <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
                                     data-target="#salir">Marque su ubicación</button>
@@ -118,7 +151,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text icon-edit_location"></span>
                                                 </div>
-                                                <input type="number" class="form-control inputsito" name="lat" id="lat"
+                                                <input type="number" class="form-control inputsito" name="ejeX" id="ejeX"
                                                     placeholder="Latitud">
                                             </div>
                                         </div>
@@ -129,7 +162,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text icon-edit_location"></span>
                                                 </div>
-                                                <input type="number" class="form-control inputsito" name="lng" id="lng"
+                                                <input type="number" class="form-control inputsito" name="ejeY" id="ejeY"
                                                     placeholder="Longitud">
                                             </div>
                                         </div>
@@ -137,18 +170,20 @@
                                 </div>
 
 
-
-                                <div class="form-group d-flex justify-content-between px-2 p-sm-0">
-                                    <div>
-                                        <input type="checkbox" name="Recordarme" id="Recordarme">
-                                        <label for="Recordarme" class="small align-middle mt-1">Acepto los terminos y
-                                            condiciones</label>
+                                <div id="alertaAceptar">
+                                    <div class="form-group d-flex justify-content-between px-2 p-sm-0">
+                                        <div>
+                                            <input type="checkbox" name="aceptar" id="aceptar">
+                                            <label for="Recordarme" class="small align-middle mt-1">Acepto los terminos y
+                                                condiciones</label>
+                                        </div>
                                     </div>
+                                    <p id="alertaAceptarMensaje" style="display:none;">DEBE ACEPTAR LOS TERMINOS Y CONDICIONES</p>
                                 </div>
                                 <div class="form-group px-2 px-lg-5">
                                     <div class="d-flex justify-content-between">
                                         <a href="login.html" class="btn btn-outline-danger btn-lg px-5 mr-2">Login</a>
-                                        <button type="submit" class="btn btn-primary btn-lg px-4">Registrar</button>
+                                        <button class="btn btn-primary btn-lg px-4" onclick="insertarUsuario(event);">Registrar</button>
 
                                     </div>
 
@@ -186,6 +221,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
     </script>
     <script src="js/main.js"></script>
+    <script src="js/registro.js"></script>
 
 </body>
 
