@@ -6,6 +6,9 @@ function comprobarSesion(){
         setUsuario();
         $('#btn').html(usuario.nombres + " " + usuario.apellidos);
     }
+    else{
+        window.location.href = "login.html";
+    }
 }
 
 function setUsuario(){
@@ -29,6 +32,5 @@ function setUsuario(){
 }
 
 $(document).ready(function() {
-    console.log("ASDf");
     comprobarSesion();
 });

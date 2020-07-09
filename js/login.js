@@ -14,6 +14,17 @@ function login(e){
         $('#alertaCiMensaje').fadeOut();
         error = false;
     }
+    if(contrasena == ""){
+        $('#alertaContrasena').addClass("alert alert-danger");
+        $('#alertaContrasenaMensaje1').fadeIn();
+        $('#contrasena').focus();
+        error = true;
+    }
+    else{
+        $('#alertaContrasena').removeClass("alert alert-danger");
+        $('#alertaContrasenaMensaje1').fadeOut();
+        error = false;
+    }
     if(error)
         return;
     url="php/controlador/ControladorUsuario.php";
@@ -27,11 +38,23 @@ function login(e){
         type: "POST",
         async: false,
         data: data,
-        success: result => {
-            console.log(result);
+        success : result => {
+            if(result.trim() == "empty")
+                error = true;
+            else
+                error = false;
         }
     });
-    sessionStorage.ci = ci;
-    sessionStorage.contrasena = contrasena;
-    window.location.href = "index.html";
+    if(error){
+        $('#alertaContrasena').addClass("alert alert-danger");
+        $('#alertaContrasenaMensaje2').fadeIn();
+        $('#contrasena').focus();
+        error = true;
+    }
+    else{
+        sessionStorage.ci = ci;
+        sessionStorage.contrasena = contrasena;
+
+        window.location.href = "index.html";
+    }
 }
