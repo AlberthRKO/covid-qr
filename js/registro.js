@@ -74,3 +74,7 @@ function insertar(){
     sessionStorage.ci = ci;
     sessionStorage.contrasena = contrasena;
 }
+
+$('#ubicacion').click(function(){
+    initMap();
+});
