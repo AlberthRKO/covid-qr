@@ -1,32 +1,56 @@
-var error = false;
-function login(e){
+$('#btnIniciar').click(function (e){
     e.preventDefault();
+    if(hayError())
+        return;
+    window.location.href = "index.html";
+});
+
+function hayError(){
     let ci = $('#ci').val() + $('select[name=extension]').val();
     let contrasena = $('#contrasena').val();
-    if($('#ci').val() == ""){
+    let errorCi = validarCi(ci);
+    let errorContrasena = validarContrasena(contrasena);
+    let usuario = getUsuario(ci,contrasena);
+    let errorUsuario = validarUsuario(usuario);
+
+    if(errorCi || errorContrasena || errorUsuario)
+        return true;
+    else{
+        sessionStorage.ci = ci;
+        sessionStorage.contrasena = contrasena;
+    }
+}
+
+function validarCi(ci){
+    if(ci == ""){
         $('#alertaCi').addClass("alert alert-danger");
         $('#alertaCiMensaje').fadeIn();
         $('#ci').focus();
-        error = true;
+        return true;
     }
     else{
         $('#alertaCi').removeClass("alert alert-danger");
         $('#alertaCiMensaje').fadeOut();
-        error = false;
+        return false;
     }
+}
+
+function validarContrasena(contrasena){
     if(contrasena == ""){
         $('#alertaContrasena').addClass("alert alert-danger");
         $('#alertaContrasenaMensaje1').fadeIn();
         $('#contrasena').focus();
-        error = true;
+        return true;
     }
     else{
         $('#alertaContrasena').removeClass("alert alert-danger");
         $('#alertaContrasenaMensaje1').fadeOut();
-        error = false;
+        return false;
     }
-    if(error)
-        return;
+}
+
+function getUsuario(ci,contrasena){
+    let usuario;
     url="php/controlador/ControladorUsuario.php";
     data = {
         'request': 'getByCiContrasena',
@@ -39,22 +63,17 @@ function login(e){
         async: false,
         data: data,
         success : result => {
-            if(result.trim() == "empty")
-                error = true;
-            else
-                error = false;
+            usuario = result.trim();
         }
     });
-    if(error){
+    return usuario;
+}
+
+function validarUsuario(usuario){
+    if(usuario == "empty"){
         $('#alertaContrasena').addClass("alert alert-danger");
         $('#alertaContrasenaMensaje2').fadeIn();
         $('#contrasena').focus();
-        error = true;
-    }
-    else{
-        sessionStorage.ci = ci;
-        sessionStorage.contrasena = contrasena;
-
-        window.location.href = "index.html";
+        return true;
     }
 }
