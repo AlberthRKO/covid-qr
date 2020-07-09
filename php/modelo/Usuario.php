@@ -34,7 +34,7 @@
             include('../connection.php');
             $query = $db->prepare("INSERT INTO usuarios(CI,NOMBRES,APELLIDOS,TELEFONO,CORREO,CONTRASENA,ROL,EJEX,EJEY)VALUES(?,?,?,?,?,?,?,?,?)");
 
-            $query->bind_param("sssssssii", $usuario->ci, $usuario->nombres, $usuario->apellidos, $usuario->telefono, $usuario->correo, $usuario->contrasena, $usuario->rol, $usuario->ejeX, $usuario->ejeY);
+            $query->bind_param("sssssssss", $usuario->ci, $usuario->nombres, $usuario->apellidos, $usuario->telefono, $usuario->correo, $usuario->contrasena, $usuario->rol, $usuario->ejeX, $usuario->ejeY);
 
             if($query->execute()){
 	            return "Datos agregados correctamente";
