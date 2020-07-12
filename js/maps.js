@@ -7,6 +7,8 @@ initMap = function () {
     //usamos la API para geolocalizar el usuario
     navigator.geolocation.getCurrentPosition(
         function (position) {
+            $('#ejeX').val(position.coords.longitude);
+            $('#ejeY').val(position.coords.latitude);
             coords = {
                 lng: position.coords.longitude,
                 lat: position.coords.latitude
@@ -14,7 +16,9 @@ initMap = function () {
             setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
 
 
-        }, function (error) { console.log(error); });
+        }, function (error) {
+
+        });
 
 }
 
@@ -24,7 +28,7 @@ function setMapa(coords) {
     //Se crea una nueva instancia del objeto mapa
     var map = new google.maps.Map(document.getElementById('map'),
         {
-            zoom: 15,
+            zoom: 18,
             center: new google.maps.LatLng(coords.lat, coords.lng),
 
         });

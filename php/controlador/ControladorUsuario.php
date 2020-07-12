@@ -25,5 +25,13 @@
       else
         echo "empty";
     break;
+    case "getByCi":
+      $ci = $_POST['ci'];
+      $usuario = Usuario::getByCi($ci);
+      if($usuario != null)
+        echo $usuario;
+      else
+        echo "empty";
+    break;
   }
 ?>

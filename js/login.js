@@ -6,7 +6,7 @@ $('#btnIniciar').click(function (e){
 });
 
 function hayError(){
-    let ci = $('#ci').val() + $('select[name=extension]').val();
+    let ci = $('#ci').val().trim() + $('select[name=extension]').val();
     let contrasena = $('#contrasena').val();
     let errorCi = validarCi(ci);
     let errorContrasena = validarContrasena(contrasena);
@@ -16,8 +16,7 @@ function hayError(){
     if(errorCi || errorContrasena || errorUsuario)
         return true;
     else{
-        sessionStorage.ci = ci;
-        sessionStorage.contrasena = contrasena;
+        sessionStorage.usuario = JSON.stringify(usuario);
     }
 }
 

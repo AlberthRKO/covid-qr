@@ -6,7 +6,7 @@ $('#btn').click(function(e){
 });
 
 function comprobarSesion(){
-    if(sessionStorage.ci){
+    if(sessionStorage.usuario){
         setUsuario();
         $('#btn').html(usuario.nombres + " " + usuario.apellidos);
     }
@@ -15,23 +15,8 @@ function comprobarSesion(){
 }
 
 function setUsuario(){
-    ci = sessionStorage.ci;
-    contrasena = sessionStorage.contrasena;
-    url="php/controlador/ControladorUsuario.php";
-    data = {
-        'request': 'getByCiContrasena',
-        'ci': ci,
-        'contrasena': contrasena
-    };
-    $.ajax({
-        url: url,
-        type: "POST",
-        async: false,
-        data: data,
-        success: result => {
-            usuario = JSON.parse(result);
-        }
-    });
+    usuario = JSON.parse(sessionStorage.usuario);
+    usuario = JSON.parse(usuario);
 }
 
 $(document).ready(function() {

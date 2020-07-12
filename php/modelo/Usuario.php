@@ -75,6 +75,36 @@
             } else
                 exit('Error al realizar la consulta: '.$query->close());
         }
+
+        public static function getByCi($ci){
+            include('../connection.php');
+            $query = $db->prepare("SELECT * FROM usuarios WHERE CI=? AND ACTIVO='1'");
+
+            $query->bind_param("s", $ci);
+            $usuario = null;
+            //Ejecutamos la consulta
+            if($query->execute()){
+                
+                //Alamacenaos los datos de la consulta
+                $query->store_result();
+                
+                if($query->num_rows == 0)
+                    return null;
+                
+                //Indicamos la variable donde se guardaran los resultados
+                $query->bind_result($idUsuario,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,$activo);
+                
+                //listamos todos los resultados
+                while($query->fetch()){
+                    $usuario = "exists";
+                }
+                //Cerramos la conexion
+                $query->close();
+                return $usuario;
+                
+            } else
+                exit('Error al realizar la consulta: '.$query->close());
+        }
         
     }
 ?>
