@@ -46,43 +46,53 @@
 
                             <h4 class="text-center  h2 text-uppercase pb-3">Crea una cuenta</h4>
                             <form action="index.html">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-user"></span>
+                                <div id="alertaNombres">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-user"></span>
+                                            </div>
+                                            <input type="text" class="form-control inputsito" name="nombres" id="nombres"
+                                                placeholder="Nombres">
                                         </div>
-                                        <input type="text" class="form-control inputsito" name="nombres" id="nombres"
-                                            placeholder="Nombres">
                                     </div>
+                                    <p id="alertaNombresMensaje" style="display:none;">INGRESE SUS NOMBRES</p>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-user"></span>
+                                <div id="alertaApellidos">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-user"></span>
+                                            </div>
+                                            <input type="text" class="form-control inputsito" name="apellidos" id="apellidos"
+                                                placeholder="Apellidos">
                                         </div>
-                                        <input type="text" class="form-control inputsito" name="apellidos" id="apellidos"
-                                            placeholder="Apellidos">
                                     </div>
+                                    <p id="alertaApellidosMensaje" style="display:none;">INGRESE SUS APELLIDOS</p>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-user"></span>
+                                <div id="alertaCi">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-user"></span>
+                                            </div>
+                                            <input type="text" class="form-control inputsito" name="ci" id="ci"
+                                                placeholder="CI">
+                                            <select name="extension" id="extension">
+                                                <option value="CH.">CH.</option>
+                                                <option value="TJ.">TJ.</option>
+                                                <option value="PD.">PD.</option>
+                                                <option value="SC.">SC.</option>
+                                                <option value="LP.">LP.</option>
+                                                <option value="OR.">OR.</option>
+                                                <option value="CB.">CB.</option>
+                                                <option value="PO.">PO.</option>
+                                                <option value="BE.">BE.</option>
+                                            </select>
                                         </div>
-                                        <input type="text" class="form-control inputsito" name="ci" id="ci"
-                                            placeholder="CI">
-                                        <select name="extension" id="extension">
-                                            <option value="CH.">CH.</option>
-                                            <option value="TJ.">TJ.</option>
-                                            <option value="PD.">PD.</option>
-                                            <option value="SC.">SC.</option>
-                                            <option value="LP.">LP.</option>
-                                            <option value="OR.">OR.</option>
-                                            <option value="CB.">CB.</option>
-                                            <option value="PO.">PO.</option>
-                                            <option value="BE.">BE.</option>
-                                        </select>
                                     </div>
+                                    <p id="alertaCiMensaje1" style="display:none;">INGRESE SU C.I.</p>
+                                    <p id="alertaCiMensaje2" style="display:none;">SU C.I. YA TIENE UNA CUENTA REGISTRADA</p>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
@@ -117,7 +127,7 @@
 
 
                                 <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
-                                    data-target="#salir" id="ubicacion">Marque su ubicación</button>
+                                    data-target="#salir" id="btnUbicacion">Marque su ubicación</button>
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="salir">
@@ -133,7 +143,9 @@
                                             </div>
                                             <!-- contenido -->
                                             <div class="modal-body">
-                                                <div id="map"></div>
+                                                <div id="map"><br><br>
+                                                    <h1>Presione permitir para continuar.<h1>
+                                                </div>
                                             </div>
                                             <div class="modal-footer d-flex justify-content-center">
                                                 <button type="button" class="btn btn-success"
@@ -144,14 +156,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="alertaUbicacion">
                                     <div class="col-6 pr-1">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text icon-edit_location"></span>
                                                 </div>
-                                                <input type="number" class="form-control inputsito" name="ejeX" id="ejeX"
+                                                <input type="number" class="form-control inputsito" name="ejeX" id="ejeX" readonly
                                                     placeholder="Latitud">
                                             </div>
                                         </div>
@@ -162,11 +174,12 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text icon-edit_location"></span>
                                                 </div>
-                                                <input type="number" class="form-control inputsito" name="ejeY" id="ejeY"
+                                                <input type="number" class="form-control inputsito" name="ejeY" id="ejeY" readonly
                                                     placeholder="Longitud">
                                             </div>
                                         </div>
                                     </div>
+                                    <p id="alertaUbicacionMensaje" style="display:none;">MARQUE SU UBICACIÓN</p>
                                 </div>
 
 
@@ -215,8 +228,6 @@
     <!--<script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk&sensor=false"></script>
     <script src="js/google-map.js"></script>-->
-
-
     <script src="js/maps.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
     <script src="js/main.js"></script>

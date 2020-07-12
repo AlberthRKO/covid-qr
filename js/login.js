@@ -6,9 +6,10 @@ $('#btnIniciar').click(function (e){
 });
 
 function hayError(){
-    let ci = $('#ci').val() + $('select[name=extension]').val();
+    let ci = $('#ci').val().trim();
     let contrasena = $('#contrasena').val();
     let errorCi = validarCi(ci);
+    ci += $('#extension').val();
     let errorContrasena = validarContrasena(contrasena);
     let usuario = getUsuario(ci,contrasena);
     let errorUsuario = validarUsuario(usuario);
@@ -16,8 +17,7 @@ function hayError(){
     if(errorCi || errorContrasena || errorUsuario)
         return true;
     else{
-        sessionStorage.ci = ci;
-        sessionStorage.contrasena = contrasena;
+        sessionStorage.usuario = JSON.stringify(usuario);
     }
 }
 
@@ -29,6 +29,7 @@ function validarCi(ci){
         return true;
     }
     else{
+        console.log("ASDF");
         $('#alertaCi').removeClass("alert alert-danger");
         $('#alertaCiMensaje').fadeOut();
         return false;
