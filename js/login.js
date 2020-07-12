@@ -6,9 +6,10 @@ $('#btnIniciar').click(function (e){
 });
 
 function hayError(){
-    let ci = $('#ci').val().trim() + $('select[name=extension]').val();
+    let ci = $('#ci').val().trim();
     let contrasena = $('#contrasena').val();
     let errorCi = validarCi(ci);
+    ci += $('#extension').val();
     let errorContrasena = validarContrasena(contrasena);
     let usuario = getUsuario(ci,contrasena);
     let errorUsuario = validarUsuario(usuario);
@@ -28,6 +29,7 @@ function validarCi(ci){
         return true;
     }
     else{
+        console.log("ASDF");
         $('#alertaCi').removeClass("alert alert-danger");
         $('#alertaCiMensaje').fadeOut();
         return false;

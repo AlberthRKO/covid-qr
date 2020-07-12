@@ -48,7 +48,7 @@ $(document).ready(function () {
                         sumaFinalM = numerosM - numerosAntM
                         // conteo de Recuperados
                         sumaFinalR = numerosR - numerosAntR
-                        console.log(sumaFinal, sumaFinalM , sumaFinalR)
+                        //console.log(sumaFinal, sumaFinalM , sumaFinalR)
                 }
 
 
