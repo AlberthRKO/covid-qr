@@ -1,3 +1,5 @@
+var usuario;
+
 $('#qr').qrcode({
     render: 'div',
     fill: '#1620AC',
@@ -9,7 +11,21 @@ function mostrarqr() {
 }
 
 $(document).ready(function() {
+    comprobarSesion();
     mostrarqr();
 });
+
+function setUsuario(){
+    usuario = JSON.parse(sessionStorage.usuario);
+    usuario = JSON.parse(usuario);
+}
+
+function comprobarSesion(){
+    if(sessionStorage.usuario){
+        setUsuario();
+    }
+    else
+        window.location.href = "login.html";
+}
 
 // $('#hola').qrcode("<button>Hola</button>");
