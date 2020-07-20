@@ -1,13 +1,16 @@
 .ftco-navbar-light {
     background: transparent !important;
 }
+
 .ftco-navbar-black {
     background: rgb(255, 255, 255) !important;
     box-shadow: 0px 0px 15px #000 !important;
 }
+
 .estilo-logo {
     color: white !important;
 }
+
 .cambio-logo {
     color: black !important;
 }
@@ -26,6 +29,7 @@
     display: block;
     background-position: top center;
 }
+
 .lectorsito {
     position: absolute;
     z-index: 10;
@@ -41,16 +45,19 @@
     -moz-animation: spin 12s linear infinite;
     animation: spin 12s linear infinite;
 }
+
 @-moz-keyframes spin {
     100% {
         -moz-transform: rotate(360deg);
     }
 }
+
 @-webkit-keyframes spin {
     100% {
         -webkit-transform: rotate(360deg);
     }
 }
+
 @keyframes spin {
     100% {
         -webkit-transform: rotate(360deg);
@@ -62,7 +69,7 @@
 Seccion de Casos
 --------------------------------------- */
 #casos {
-    padding-top: 5rem !important;
+    padding-top: 2.5rem !important;
 }
 
 .contentEstado {
@@ -70,6 +77,31 @@ Seccion de Casos
     background-size: cover;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
+
+.contentEstado3 {
+    background: url("../images/estados/statistics-bg.jpg") center center;
+    background-size: cover;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
+    transition: all .5s ease;
+}
+
+.contentEstado3:hover {
+    transform: translateY(-1rem);
+}
+
+.contentEstado2 {
+    background: url("../images/estados/statistics-bg.jpg") center center;
+    background-size: cover;
+    /* border: 1px solid #1a1a1a; */
+    transition: all .5s ease;
+}
+
+.contentEstado2:hover {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
+    border: none;
+    transform: translateY(-1rem);
+}
+
 .estilo-estados p {
     white-space: nowrap;
 }
@@ -79,13 +111,16 @@ Seccion de Casos
     background-size: cover;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
+
 .input-group-text {
     background: transparent !important;
     border-right: 0 !important;
 }
+
 .inputsito {
     border-left: 0 !important;
 }
+
 .divider {
     display: block;
     text-align: center;
@@ -93,6 +128,7 @@ Seccion de Casos
     white-space: nowrap;
     margin: 1rem 0;
 }
+
 .divider .divider-text {
     position: relative;
     display: inline-block;
@@ -100,12 +136,15 @@ Seccion de Casos
     padding: 0 1rem;
     background-color: #fff;
 }
+
 .divider .divider-text:before {
     right: 100%;
 }
+
 .divider .divider-text::after {
     left: 100%;
 }
+
 .divider .divider-text:before,
 .divider .divider-text:after {
     content: "";
@@ -124,6 +163,7 @@ Seccion de Casos
     background-size: cover;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
+
 /* Alineamiento de tablas por el boton */
 #tablas tr td,
 #tablas tr th {
@@ -134,14 +174,95 @@ th {
     text-transform: capitalize;
 }
 
+
+
+/* Acordion */
+.accordion .card {
+    margin-bottom: 10px;
+    border-width: 0 0 0 2px;
+    border-style: solid;
+    border-color: #4C30A6;
+    border-radius: 0;
+}
+
+.accordion .card-header {
+    position: relative;
+    cursor: pointer;
+    border: none;
+}
+
+.accordion .card-header[aria-expanded="true"].icon-close,
+.accordion .card-header[aria-expanded="false"] .icon-close {
+    transform: rotate(45deg);
+    transition: 0.3s linear all;
+}
+
+.accordion .card-header[aria-expanded="false"]:before {
+    transform: rotate(0deg);
+    transition: 0.3s linear all;
+}
+
+.card-header {
+    background-color: #217EFF;
+}
+
+.card-header .d-flex {
+    color: white;
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+
+
+
+/* Footer */
+.columna-inclinada::before {
+    content: "";
+    position: absolute;
+    background: #4341c3;
+    left: -100%;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+}
+
+.enlaces-secundario {
+    border-bottom: .1px solid #5d666f;
+    -webkit-box-shadow: 0 1px #212529;
+    box-shadow: 0 1px #212529;
+}
+
+.enlaces-secundario a {
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+#pie-pagina {
+    background: url(../images/bg-3.jpg) center center/cover;
+}
+
+
+
+
+
 @media (max-width: 576px) {
     .imagensita {
         height: 325px !important;
         width: 100% !important;
     }
+
     #cabecera .titulo {
         font-size: 1.8rem !important;
     }
+
     #cabecera .subtitulo {
         font-size: 0.8rem !important;
     }
@@ -160,8 +281,41 @@ th {
 }
 
 @media (min-width: 991.98px) and (max-width: 1199.98px) {
-    .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    .ftco-navbar-light .navbar-nav>.nav-item>.nav-link {
         padding-left: 0.55rem !important;
         padding-right: 0.55rem !important;
+    }
+}
+
+/* Footer */
+@media (min-width: 768px) {
+    .navbar-dark .navbar-nav .nav-link::after {
+        content: "";
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover:after {
+        content: "";
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        padding: .7rem 1.2rem;
+        border-radius: 1.5rem;
+    }
+
+    #te-ayudamos {
+        -webkit-transform: skew(0, 3deg);
+        transform: skew(0, 3deg);
+    }
+
+    #te-ayudamos .container {
+        -webkit-transform: skew(0, -3deg);
+        transform: skew(0, -3deg);
+    }
+
+    .columna-inclinada::before {
+        left: -300%;
+        right: 0;
+        -webkit-transform: skewX(20deg);
+        transform: skewX(20deg);
     }
 }

@@ -1,0 +1,24 @@
+.accordion .card {
+  margin-bottom: 10px;
+  border-width: 0 0 0 2px;
+  border-style: solid;
+  border-color: #4C30A6;
+  border-radius: 0;
+}
+
+.accordion .card-header {
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.accordion .card-header[aria-expanded="true"].icon-close,
+.accordion .card-header[aria-expanded="false"] .icon-close {
+  transform: rotate(45deg);
+  transition: 0.3s linear all;
+}
+
+.accordion .card-header[aria-expanded="false"]:before {
+  transform: rotate(0deg);
+  transition: 0.3s linear all;
+}

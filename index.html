@@ -22,6 +22,7 @@
 
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/misEstilos.css">
 </head>
@@ -52,15 +53,16 @@
 					<li class="nav-item"><a href="#about-section" class="nav-link text-white"><span>Acerca de</span></a>
 					</li>
 					<li class="nav-item"><a href="#casos" class="nav-link text-white"><span>Estado Covid</span></a></li>
-					<li class="nav-item"><a href="#doctor-section" class="nav-link text-white"><span>Sintomas</span></a>
+					<li class="nav-item"><a href="#sintomas" class="nav-link text-white"><span>Sintomas</span></a>
 					</li>
-					<li class="nav-item"><a href="#blog-section" class="nav-link text-white"><span>Prevencion</span></a>
+					<li class="nav-item"><a href="#prevencion" class="nav-link text-white"><span>Prevencion</span></a>
 					</li>
-					<li class="nav-item"><a href="pruebaqr.html"
-							class="nav-link text-white"><span>Código QR de prueba</span></a>
+					<li class="nav-item"><a href="#app" class="nav-link text-white"><span>Uso App</span></a>
 					</li>
-					<li class="nav-item cta" style="margin-top: 2px;"><a href="#"
-							class="nav-link font-weight-bold" id="btn">Iniciar
+					<li class="nav-item"><a href="pruebaqr.html" class="nav-link text-white"><span>QR</span></a>
+					</li>
+					<li class="nav-item cta" style="margin-top: 2px;"><a href="#" class="nav-link font-weight-bold"
+							id="btn">Iniciar
 							Sesión</a></li>
 				</ul>
 			</div>
@@ -102,14 +104,18 @@
 					<div class="py-md-5">
 						<div class="row justify-content-start pb-0">
 							<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
-								<h2 class="mb-4">Informate de posibles portadores de <span>Coronavirus</span> en tu cercanía</h2>
-								<p>CovidQR hace un rastreo de sus usuarios mediante la lectura de códigos QR en su trayectoría. Esta información
-								nos permite tener un registro de tus movimientos y mantener informada a la población de tu actividad,
-								en el lamentable caso de que contraigas el virus.</p><br>
-								<p>No te preocupes por tu imagen, toda tu actividad se mostrará sin nombres ni identidad,
-								sé responsable y ayudanos a mantener control de los portadores de Coronavirus.</p>
+								<h2 class="mb-4">Informate de posibles portadores de <span>Coronavirus</span> en tu
+									cercanía</h2>
+								<p>CovidQR hace un rastreo de sus usuarios mediante la lectura de códigos QR en su
+									trayectoría. Esta información
+									nos permite tener un registro de tus movimientos y mantener informada a la población
+									de tu actividad,
+									en el lamentable caso de que contraigas el virus.</p><br>
+								<p>No te preocupes por tu imagen, toda tu actividad se mostrará sin nombres ni
+									identidad,
+									sé responsable y ayudanos a mantener control de los portadores de Coronavirus.</p>
 								<p><a href="#" class="btn btn-primary py-3 px-4">Escanea un QR</a> <a href="#"
-										class="btn btn-secondary py-3 px-4">Contactanos</a></p>
+										class="btn btn-secondary py-3 px-4">Unicaciones QR</a></p>
 							</div>
 						</div>
 					</div>
@@ -119,7 +125,7 @@
 	</section>
 
 
-	<section id="casos" class="py-3 " data-aos="zoom-in-up" data-aos-duration="1500">
+	<section id="casos" class="py-3" data-aos="zoom-in-up" data-aos-duration="1500">
 		<div class="container">
 			<h3 class="text-center mb-3 font-weight-bold">Estado global de coronavirus en Bolivia</h3>
 			<p class="text-center font-weight-bold">Hasta el <span class="text-primary ml-2" id="fechaCovid2"></span>
@@ -319,7 +325,357 @@
 		</div>
 	</section>
 
+	<section id="sintomas" class="py-5">
+		<div class="container">
+			<h3 class="text-center mb-4 font-weight-bold">Sintomas</h3>
+			<div class="row">
+				<div class="col-lg-6 mb-4" data-aos="zoom-in-up" data-aos-duration="1500">
+					<div class="p-3 d-flex align-items-center contentEstado3">
+						<img src="images/sintomas/Fiebre.svg" alt="" class="img-fluid" width="150">
+						<div class="ml-3">
+							<h2 class="text-center font-weight-bold heading-section h4 text-primary">Fiebre</h2>
+							<pstyle="line-height: 1.8rem;">La fiebre es un síntoma clave, sepa que
+								realmente no es fiebre hasta que su temperatura alcance al menos 100°.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 mb-4" data-aos="zoom-in-up" data-aos-duration="1500">
+					<div class="p-3 d-flex align-items-center contentEstado3">
+						<img src="images/sintomas/TosSeca.svg" alt="" class="img-fluid" width="150">
+						<div class="ml-3">
+							<h2 class="text-center font-weight-bold heading-section h4 text-primary">Tos Seca</h2>
+							<pstyle="line-height: 1.8rem;">La tos es un síntoma clave, pero no es una tos cualquiera.
+								Debe
+								ser una tos seca que
+								siente en el pecho.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 mb-4" data-aos="zoom-in-up" data-aos-duration="1500">
+					<div class="p-3 d-flex align-items-center contentEstado3">
+						<img src="images/sintomas/Cansancio.svg" alt="" class="img-fluid" width="150">
+						<div class="ml-3">
+							<h2 class="text-center font-weight-bold heading-section h4 text-primary">Cansancio</h2>
+							<pstyle="line-height: 1.8rem;">Sentir cansancio de la nada, repentino o seguidamente es otro
+								grave sintoma de
+								coronavirus</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6" data-aos="zoom-in-up" data-aos-duration="1500">
+					<div class="p-3 d-flex align-items-center contentEstado3">
+						<img src="images/sintomas/Respiratorio.svg" alt="" class="img-fluid" width="150">
+						<div class="ml-3">
+							<h2 class="text-center font-weight-bold heading-section h4 text-primary titulo">Problema al
+								respirar
+							</h2>
+							<pstyle="line-height: 1.8rem;">La falta de aliento puede ser otro sintoma y muy grave de
+								Covid-19, y puede
+								ocurrir por sí sola, sin tos.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="prevencion" class="py-5">
+		<div class="container">
+			<h3 class="text-center mb-4 font-weight-bold">Prevención</h3>
+			<div class="row">
+				<div class="col-md-6 col-lg-4 mb-4" data-aos="flip-up" data-aos-duration="1500">
+					<div class="p-3 contentEstado2 text-center">
+						<img src="images/Prevencion/Mascarilla.svg" alt="" width="80">
+						<h3 class="h4 font-weight-bold text-danger text-center">Mascarilla</h3>
+						<p style="line-height: 1.5rem;">Usar mascarrilla al momento de salir a las calles o al estar en
+							casa, para evitar el contagio
+							directo</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 mb-4" data-aos="flip-up" data-aos-duration="1500">
+					<div class="p-3 contentEstado2 text-center">
+						<img src="images/Prevencion/Lavarse las manos.svg" alt="" width="80">
+						<h3 class="h4 font-weight-bold text-danger text-center">Lavarse las manos</h3>
+						<p style="line-height: 1.5rem;">Lavarse las manos despues de hacer contacto con alguien o algo
+							para evitar un posible contagio</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 mb-4" data-aos="flip-up" data-aos-duration="1500">
+					<div class="p-3 contentEstado2 text-center">
+						<img src="images/Prevencion/distancia.svg" alt="" width="80">
+						<h3 class="h4 font-weight-bold text-danger text-center">Mantener Distancia</h3>
+						<p style="line-height: 1.5rem;">Manten una distancia de almenos <span class="font-weight-bold">1
+								metro</span> al momento de salir a
+							las calles</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 mb-4" data-aos="flip-up" data-aos-duration="1500">
+					<div class="p-3 contentEstado2 text-center">
+						<img src="images/Prevencion/casa.svg" alt="" width="80">
+						<h3 class="h4 font-weight-bold text-danger text-center">Mantente en Casa</h3>
+						<p style="line-height: 1.5rem;">Evita salir a las calles y quedate en casa para poder evitar un
+							posible contacto con el covid</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 mb-4" data-aos="flip-up" data-aos-duration="1500">
+					<div class="p-3 contentEstado2 text-center">
+						<img src="images/Prevencion/alcoholGel.svg" alt="" width="80">
+						<h3 class="h4 font-weight-bold text-danger text-center">Alcohol en Gel</h3>
+						<p style="line-height: 1.5rem;">Cada vez que tengas algún contacto con alguien, pasate
+							con alcohol en gel para evitar contagio</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4" data-aos="flip-up" data-aos-duration="1500">
+					<div class="p-3 contentEstado2 text-center">
+						<img src="images/Prevencion/Aglomeracion.svg" alt="" width="80">
+						<h3 class="h4 font-weight-bold text-danger text-center">Evita Aglomeraciones</h3>
+						<p style="line-height: 1.5rem;">Evita las aglomeraciones de gente, toma distancia al momento de
+							una aglomeración</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<section id="app" class="section accordion bg-color py-5">
+		<div class="container">
+			<h3 class="text-center mb-4 font-weight-bold">Uso de La aplicación Movil</h3>
+			<div class="row align-items-center">
+				<div class="col-lg-6 col-md-6" data-aos="zoom-in-left" data-aos-duration="1500">
+					<div id="accordion-4-one">
+						<div class="card">
+							<div class="card-header" id="accordion-4-heading-1" data-toggle="collapse"
+								data-target="#accordion-4-collapse-1" aria-expanded="true"
+								aria-controls="accordion-4-collapse-1">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Login de la Aplicación</h6>
+									<i class="icon-close"></i>
+								</div>
+
+							</div>
+							<div id="accordion-4-collapse-1" class="collapse show"
+								aria-labelledby="accordion-4-heading-1" data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Accede a nuestra app o pagina web con tu numero de carnet tu localidad y la
+									respectiva contraseña que creaste al momento de registrarte a nuestro sistema, de no
+									ser asi pasa al siguiente paso para el registro
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-4-heading-2" data-toggle="collapse"
+								data-target="#accordion-4-collapse-2" aria-expanded="false"
+								aria-controls="accordion-4-collapse-2">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Registrate</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-4-collapse-2" class="collapse" aria-labelledby="accordion-4-heading-2"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Si quieres registrarte en nuestro sistema, solo basta con poner tus datos personales
+									y podras acceder a la pagina o aplicación con tu carnet y contraseña creada
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-4-heading-3" data-toggle="collapse"
+								data-target="#accordion-4-collapse-3" aria-expanded="false"
+								aria-controls="accordion-4-collapse-3">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Ubicación</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-4-collapse-3" class="collapse" aria-labelledby="accordion-4-heading-3"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Al momento de registrarte debes apuntar tu ubicacion de domicilio en nuestro mapa
+									para posteriormente ayudar a otras personas a tomar distancia por la zona en caso a
+									dar positivo en coronavirus
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-4" data-toggle="collapse"
+								data-target="#accordion-collapse-4" aria-expanded="false"
+								aria-controls="accordion-collapse-4">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Acceso</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-collapse-4" class="collapse" aria-labelledby="accordion-4"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Accede a nuestra pagina web donde estaras informado de los casos de covid en
+									Bolivia, sintomas de Covid, Prevención y el uso correcto de nuestra aplicación una
+									ves estes registrado en nuestro sistema.
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-5" data-toggle="collapse"
+								data-target="#accordion-collapse-5" aria-expanded="false"
+								aria-controls="accordion-collapse-5">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Acceso Aplicación</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-collapse-5" class="collapse" aria-labelledby="accordion-5"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Una vez accedas atraves de nuestra app movil podras escanear un QR por tu zona o
+									bien puedes ver las ubicaciones de los distintos QR's que tenemos alrededor del Pais
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-6" data-toggle="collapse"
+								data-target="#accordion-collapse-6" aria-expanded="false"
+								aria-controls="accordion-collapse-6">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Escanea un QR</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-collapse-6" class="collapse" aria-labelledby="accordion-6"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Según la zona en que te encuentres, encontraras un codigo QR que podras leerlo
+									atraves de la aplicación movil el cual te dara un informe de la zona
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-7" data-toggle="collapse"
+								data-target="#accordion-collapse-7" aria-expanded="false"
+								aria-controls="accordion-collapse-7">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Datos del QR</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-collapse-7" class="collapse" aria-labelledby="accordion-7"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Una vez leido el QR podras ver la gravedad de covid en la zona y la trayectoria que
+									personas contagiadas que pasaron por la zona asi poder evitar posibles contagios y
+									evites dichas zonas peligrosas
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="accordion-8" data-toggle="collapse"
+								data-target="#accordion-collapse-8" aria-expanded="false"
+								aria-controls="accordion-collapse-8">
+								<div class="d-flex justify-content-between align-items-center">
+									<h6>Informa de Covid</h6>
+									<i class="icon-close"></i>
+								</div>
+							</div>
+							<div id="accordion-collapse-8" class="collapse" aria-labelledby="accordion-8"
+								data-parent="#accordion-4-one">
+								<div class="card-body contentEstado">
+									Una vez en nuestra página podras ver los casos de covid en los diferentes
+									departamentos de bolivia ya sea Activos, Recuperados o Muertos tanto del dia como
+									desde que comenzo todo esta pandemia
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6" data-aos="zoom-in-right" data-aos-duration="1500">
+					<!-- Swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide text-center">
+								<img src="images/uso/login.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/registro.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/ubicacion.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/acceso.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/principal.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/lectura.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/datos.jpg" alt="" width="300">
+							</div>
+							<div class="swiper-slide text-center">
+								<img src="images/uso/vista web.jpg" alt="" width="300">
+							</div>
+						</div>
+
+						<!-- Add Pagination -->
+						<div class="swiper-pagination"></div>
+
+						<!-- Add Arrows -->
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
+
+
+
+				</div>
+
+			</div>
+		</div>
+	</section>
 	<div class="pt-5"></div>
+	<footer id="pie-pagina" class="text-light overflow-hidden">
+
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-12  py-2 columna-inclinada col-md-6 col-xl-5">
+					<!-- nuevo sistema para anidar -->
+					<div class="row justify-content-center justify-content-md-start">
+						<div class="col-12">
+							<h2 class="text-white font-weight-bold text-center text-md-left h1"
+								style="font-family: 'Kaushan Script',cursive;">COVID-QR</h2>
+						</div>
+						<!-- para que se adapte a su contenido -->
+						<div class="col-auto text-black-50">
+							<i class="fas fa-notes-medical fa-4x"></i>
+						</div>
+						<div class="col-auto text-black-50 pl-0">
+							<p class="text-white">Protege a tu familia, a tu vecino y protegete a ti.</p>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-12 py-2 text-center small col-md-6 text-md-right col-xl-7">
+					<ul class="list-unstyled d-inline-flex text-uppercase enlaces-secundario">
+						<li class="nav-item"><a href="#home-section" class="nav-link text-white"><span>Inicio</span></a>
+						</li>
+						<li class="nav-item"><a href="#casos" class="nav-link text-white"><span>Estado Covid</span></a>
+						</li>
+						<li class="nav-item"><a href="#sintomas" class="nav-link text-white"><span>Sintomas</span></a>
+						</li>
+						<li class="nav-item"><a href="#prevencion"
+								class="nav-link text-white"><span>Prevención</span></a>
+						</li>
+					</ul>
+					<p>© 2020. Todos los derechos reservados DEVOP</p>
+				</div>
+			</div>
+		</div>
+
+	</footer>
 
 
 
@@ -337,8 +693,10 @@
 	<script src="js/aos.js"></script>
 	<script src="js/jquery.animateNumber.min.js"></script>
 	<script src="js/scrollax.min.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
 	<script src="js/google-map.js?v=2"></script>
+	<script src="js/swiper.min.js"></script>
 
 	<script src="js/main.js"></script>
 	<script src="js/tablaCovid.js"></script>
