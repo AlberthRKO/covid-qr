@@ -82,7 +82,7 @@ Seccion de Casos
     background: url("../images/estados/statistics-bg.jpg") center center;
     background-size: cover;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
 }
 
 .contentEstado3:hover {
@@ -93,7 +93,7 @@ Seccion de Casos
     background: url("../images/estados/statistics-bg.jpg") center center;
     background-size: cover;
     /* border: 1px solid #1a1a1a; */
-    transition: all .5s ease;
+    transition: all 0.5s ease;
 }
 
 .contentEstado2:hover {
@@ -174,14 +174,12 @@ th {
     text-transform: capitalize;
 }
 
-
-
 /* Acordion */
 .accordion .card {
     margin-bottom: 10px;
     border-width: 0 0 0 2px;
     border-style: solid;
-    border-color: #4C30A6;
+    border-color: #4c30a6;
     border-radius: 0;
 }
 
@@ -203,13 +201,12 @@ th {
 }
 
 .card-header {
-    background-color: #217EFF;
+    background-color: #217eff;
 }
 
 .card-header .d-flex {
     color: white;
 }
-
 
 .swiper-container {
     width: 100%;
@@ -223,8 +220,6 @@ th {
     bottom: -20px;
 }
 
-
-
 /* Footer */
 .columna-inclinada::before {
     content: "";
@@ -237,7 +232,7 @@ th {
 }
 
 .enlaces-secundario {
-    border-bottom: .1px solid #4341C3;
+    border-bottom: 0.1px solid #4341c3;
     -webkit-box-shadow: 0 1px #212529;
     box-shadow: 0 1px #212529;
 }
@@ -251,9 +246,41 @@ th {
 
 #pie-pagina {
     background: url(../images/estados/statistics-bg.jpg) center center/cover;
-    border: 2px solid #4341C3;
+    border: 2px solid #4341c3;
 }
 
+/* Estilos para vista de admin */
+
+.sidebar-content li a {
+    font-family: "Poppins", cursive;
+}
+
+.sidebar-content li a span {
+    font-family: "Poppins", cursive;
+    font-weight: bold;
+}
+
+.app-sidebar[data-background-color='white'] .sidebar-background:after,
+.off-canvas-sidebar[data-background-color='white'] .sidebar-background:after {
+    opacity: 0.05 !important;
+}
+
+.header-navbar {
+    background: url(../images/bgcovid.jpg) center center/cover;
+
+}
+
+.menu-collapsed a img {
+    width: 50px;
+    margin-left: -8px;
+}
+
+@media (max-width: 992px) {
+
+    .navbar-header .navbar-toggle {
+        margin: 10px 0 10px 0;
+    }
+}
 
 
 
@@ -303,7 +330,7 @@ th {
     }
 
     .navbar-dark .navbar-nav .nav-link {
-        padding: .7rem 1.2rem;
+        padding: 0.7rem 1.2rem;
         border-radius: 1.5rem;
     }
 
