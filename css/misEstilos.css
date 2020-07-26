@@ -260,14 +260,13 @@ th {
     font-weight: bold;
 }
 
-.app-sidebar[data-background-color='white'] .sidebar-background:after,
-.off-canvas-sidebar[data-background-color='white'] .sidebar-background:after {
+.app-sidebar[data-background-color="white"] .sidebar-background:after,
+.off-canvas-sidebar[data-background-color="white"] .sidebar-background:after {
     opacity: 0.05 !important;
 }
 
 .header-navbar {
     background: url(../images/bgcovid.jpg) center center/cover;
-
 }
 
 .menu-collapsed a img {
@@ -275,15 +274,21 @@ th {
     margin-left: -8px;
 }
 
-@media (max-width: 992px) {
+::placeholder {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
 
+.app-sidebar .navigation li>a:before,
+.off-canvas-sidebar .navigation li>a:before {
+    border-right: solid 5px #FE5F55;
+}
+
+
+@media (max-width: 992px) {
     .navbar-header .navbar-toggle {
         margin: 10px 0 10px 0;
     }
 }
-
-
-
 
 @media (max-width: 576px) {
     .imagensita {
