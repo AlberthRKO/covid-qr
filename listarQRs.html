@@ -179,75 +179,12 @@
                                             <th>Zona</th>
                                             <th>Latitud</th>
                                             <th>Longitud</th>
-                                            <th>Origen</th>
                                             <th>Riesgo</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mercado Campesino</td>
-                                            <td>19.2654965</td>
-                                            <td>16.3245845</td>
-                                            <td>CH.</td>
-                                            <td>
-                                                <span class="badge badge-danger">Alto</span>
-                                            </td>
-                                            <td>
-                                                <a class="success p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#editarQR">
-                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#eliminarQR">
-                                                    <i class="icon-close font-medium-3 mr-2"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Mercado Chiriguano</td>
-                                            <td>13.2585663</td>
-                                            <td>14.2568947</td>
-                                            <td>SC.</td>
-                                            <td>
-                                                <span class="badge badge-warning">Medio</span>
-                                            </td>
-                                            <td>
-                                                <a class="success p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#editarQR">
-                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#eliminarQR">
-                                                    <i class="icon-close font-medium-3 mr-2"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Mercado Central</td>
-                                            <td>-19.5685631</td>
-                                            <td>-17.2569847</td>
-                                            <td>PD.</td>
-                                            <td>
-                                                <span class="badge badge-success">Bajo</span>
-                                            </td>
-                                            <td>
-                                                <a class="success p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#editarQR">
-                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#eliminarQR">
-                                                    <i class="icon-close font-medium-3 mr-2"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
+                                    <tbody id="tabla">
+                                        
                                     </tbody>
 
                                 </table>
@@ -294,19 +231,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text icon-location_city"></span>
                                 </div>
-                                <input type="text" class="form-control inputsito" name="zona" id="zona"
+                                <input type="text" class="form-control inputsito" name="zona" id="nombre"
                                     placeholder="Zona">
-                                <select name="extension" id="extension">
-                                    <option value="CH.">CH.</option>
-                                    <option value="TJ.">TJ.</option>
-                                    <option value="PD.">PD.</option>
-                                    <option value="SC.">SC.</option>
-                                    <option value="LP.">LP.</option>
-                                    <option value="OR.">OR.</option>
-                                    <option value="CB.">CB.</option>
-                                    <option value="PO.">PO.</option>
-                                    <option value="BE.">BE.</option>
-                                </select>
                             </div>
                         </div>
 
@@ -368,8 +294,8 @@
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-around">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelar">Cancelar</button>
                 </div>
 
 
@@ -390,12 +316,11 @@
                 </div>
                 <!-- contenido -->
                 <div class="modal-body">
-                    <p>Estas seguro que desea eliminar QR de <span class="font-weight-bold" id="deleteQR">Mercado
-                            Campesino </span>de <span class="font-weight-bold" id="deleteOrigen">CH. </span> ?</p>
+                    <p id="mensajeEliminar"></p>
                 </div>
                 <div class="modal-footer d-flex justify-content-around">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelar2">Cancelar</button>
                 </div>
 
 
@@ -418,6 +343,31 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-around">
                     <a href="login.html" type="button" class="btn btn-primary">Cerrar Sesión</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="imprimirQR">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Contenido del modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-uppercase">Código QR</h4>
+                    <!-- data-dismis cierra el modal  -->
+                    <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- contenido -->
+                <div class="modal-body">
+                    <div id="mostrar" class="d-none">
+                        <center><div id="qr" class="d-inline-block p-3 mt-2" style="box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);"></div></center>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Imprimir</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
 
@@ -456,8 +406,9 @@
     <script src="js/maps.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
+    <script src="js/jquery-qrcode.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/registrarQR.js"></script>
+    <script src="js/listarQRs.js"></script>
     <!-- END PAGE LEVEL JS-->
 </body>
 <!-- END : Body-->

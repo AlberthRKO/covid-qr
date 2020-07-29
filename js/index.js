@@ -1,10 +1,5 @@
 var usuario;
 
-$('#btn').click(function(e){
-    e.preventDefault();
-    console.log(usuario.nombres + " " + usuario.apellidos);
-});
-
 function comprobarSesion(){
     if(sessionStorage.usuario){
         setUsuario();
