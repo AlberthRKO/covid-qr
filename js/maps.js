@@ -22,6 +22,20 @@ initMap = function () {
 
 }
 
+const dibujarMapa = (ubicaciones) => {
+    let mapa = new google.maps.Map(document.getElementById('map'),{
+        center: {lat: -19.044654, lng: -65.260850},
+        zoom: 14,
+    });
+
+    ubicaciones.forEach(ubicacion => {
+        new google.maps.Marker({
+            map: mapa,
+            position:{lat: parseFloat(ubicacion.ejeX), lng: parseFloat(ubicacion.ejeY)},//lat es ejeX para nosotros y lng ejeY xd
+            title: ubicacion.nombre
+        });
+    });
+};
 
 
 function setMapa(coords) {

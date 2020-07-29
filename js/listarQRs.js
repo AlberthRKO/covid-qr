@@ -7,6 +7,11 @@ $(document).ready(function (){
     listarUbicaciones();
 });
 
+$('#listarPuntos').click(function(){
+    dibujarMapa(ubicaciones);
+    $('#mapa').modal("show");
+});
+
 function comprobarAdmin(){
     if(sessionStorage.usuario){
         usuario = JSON.parse(sessionStorage.usuario);
