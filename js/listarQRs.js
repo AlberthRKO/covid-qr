@@ -123,6 +123,7 @@ function mostrarqr() {
 }
 
 $('#btnEliminar').click(function () {
+    let url = "php/controlador/ControladorUbicacion.php";
     data = {
         request: 'eliminar',
         idUbicacion: actualIdUbicacion
@@ -136,7 +137,7 @@ $('#btnEliminar').click(function () {
             console.log(result);
         }
     });
-    $('#fila' + actualIdUbicacion).fadeOut(500);
+    $('#fila' + actualIdUbicacion).fadeOut(1000);
     $('#btnCancelar2').click();
 });
 
@@ -163,7 +164,6 @@ $('#btnGuardar').click(function () {
         data: data
     });
     $('#btnCancelar').click();
-    alert("EDITADO EXITOSAMENTE");
     editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
 });
 

@@ -186,69 +186,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tabla">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>45789655</td>
-                                            <td>Paco Charcas</td>
-                                            <td>Juan Pablo</td>
-                                            <td>TJ.</td>
-                                            <td>
-                                                <span class="badge badge-success">Recuperado</span>
-                                            </td>
-                                            <td>
-                                                <a class="success p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#editar">
-                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#eliminar">
-                                                    <i class="icon-close font-medium-3 mr-2"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>75663214</td>
-                                            <td>Robles Solano</td>
-                                            <td>Elmer Wilber</td>
-                                            <td>SC.</td>
-                                            <td>
-                                                <span class="badge badge-danger">Muerto</span>
-                                            </td>
-                                            <td>
-                                                <a class="success p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#editar">
-                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#eliminar">
-                                                    <i class="icon-close font-medium-3 mr-2"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>13548904</td>
-                                            <td>Ramirez Acho</td>
-                                            <td>Pedro Luis</td>
-                                            <td>PD.</td>
-                                            <td>
-                                                <span class="badge badge-primary">Confirmado</span>
-                                            </td>
-                                            <td>
-                                                <a class="success p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#editar">
-                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger p-0" data-original-title="" title=""
-                                                    data-toggle="modal" data-target="#eliminar">
-                                                    <i class="icon-close font-medium-3 mr-2"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
 
                                 </table>
@@ -353,7 +291,7 @@
                                     <option value="NORMAL">Normal</option>
                                     <option value="CONFIRMADO">Confirmado</option>
                                     <option value="RECUPERADO">Recuperado</option>
-                                    <option value="FALLECIDO">Muerto</option>
+                                    <option value="FALLECIDO">Fallecido</option>
                                 </select>
                             </div>
                         </div>
@@ -385,13 +323,12 @@
                     <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- contenido -->
-                <div class="modal-body">
-                    <p class="text-dark">Estas seguro que desea eliminar a <span class="font-weight-bold"
-                            id="deleteUser"></span>?</p>
+                <div class="modal-body" id="mensajeEliminar">
+                    
                 </div>
                 <div class="modal-footer d-flex justify-content-around">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelar2">Cancelar</button>
                 </div>
 
 

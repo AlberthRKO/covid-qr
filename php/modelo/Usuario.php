@@ -61,6 +61,22 @@
             }
         }
 
+        public static function eliminar($idUsuario){
+            include('../connection.php');
+            $query = $db->prepare("UPDATE usuarios SET ACTIVO='0' WHERE IDUSUARIO=?");
+
+            $query->bind_param("i", $idUsuario);
+
+            if($query->execute()){
+	            return "Datos eliminados correctamente";
+                $query->close();
+                
+            } else {
+                echo "Error al realizar la consulta: ".$query->error;
+                $query->close();
+            }
+        }
+
         public static function getByCiContrasena($ci,$contrasena){
             include('../connection.php');
             $query = $db->prepare("SELECT * FROM usuarios WHERE CI=? AND CONTRASENA=? AND ACTIVO='1'");

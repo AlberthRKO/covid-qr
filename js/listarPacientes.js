@@ -46,7 +46,7 @@ function listarUsuarios(){
                         <td id="nombres${idUsuario}">${usuario.nombres}</td>
                         <td id="apellidos${idUsuario}">${usuario.apellidos}</td>
                         <td id="extension${idUsuario}">${extension}</td>
-                        <td>${spanEstado}</td>
+                        <td id="filaEstado${idUsuario}">${spanEstado}</td>
                         <td>
                             <a class="success p-0" data-original-title="" title=""
                                 data-toggle="modal" onclick="mostrarEditarUsuarioModal(${idUsuario})">
@@ -86,7 +86,7 @@ $('#btnGuardar').click(function(){
     let ci = $('#ci').val();
     let extension = $('#extension').val();
     let estado = $('#estado').val();
-    console.log(`${nombres} ${apellidos} ${ci}${extension} ${estado}`)
+
     let url="php/controlador/ControladorUsuario.php";
     data = {
         request: 'editar',
@@ -106,22 +106,56 @@ $('#btnGuardar').click(function(){
         }
     });
     $('#btnCancelar').click();
-    alert("EDITADO EXITOSAMENTE");
-    editarFila(actualIdUsuario,ci,extension,nombres,apellidos,estado);
+    let usuario = {
+        idUsuario:actualIdUsuario,
+        ci: ci,
+        extension: extension,
+        nombres: nombres,
+        apellidos: apellidos,
+        estado: estado
+    }
+    editarFila(usuario);
 });
 
-function editarFila(idUsuario,ci,extension,nombres,apellidos,estado){
-    $('#nombres' + idUsuario).html(nombres);
-    $('#ci' + idUsuario).html(ci);
-    $('#extension' + idUsuario).html(extension);
-    $('#apellidos' + idUsuario).html(apellidos);
-    $('#estado' + idUsuario).html(estado);
+function editarFila(usuario){
+    let idUsuario = usuario.idUsuario;
+    $('#nombres' + idUsuario).html(usuario.nombres);
+    $('#ci' + idUsuario).html(usuario.ci);
+    $('#extension' + idUsuario).html(usuario.extension);
+    $('#apellidos' + idUsuario).html(usuario.apellidos);
+    let etiquetaEstado = getEtiquetaEstado(usuario);
+    $('#filaEstado' + idUsuario).html(etiquetaEstado);
 }
 
 
 function mostrarEliminarUsuarioModal(idUsuario){
-
+    actualIdUsuario = idUsuario;
+    let nombres = $('#nombres' + idUsuario).html();
+    let apellidos = $('#apellidos' + idUsuario).html();
+    let html = `<p class="text-dark">Estas seguro que desea eliminar a <span class="font-weight-bold">${nombres} ${apellidos}</span>?</p>`;
+    $('#mensajeEliminar').html(html);
+    $('#eliminar').modal("show");
 }
+
+$('#btnEliminar').click(function () {
+    let url = "php/controlador/ControladorUsuario.php";
+    data = {
+        request: 'eliminar',
+        idUsuario: actualIdUsuario
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+    $('#fila' + actualIdUsuario).fadeOut(1000);
+    $('#btnCancelar2').click();
+});
+
 
 function getEtiquetaEstado(usuario){
     let estadoHtml;

@@ -25,6 +25,10 @@
       $usuario = new Usuario($idUsuario,$ci,$nombres,$apellidos,'','','','',$estado,'','','1');
       Usuario::editar($usuario);
     break;
+    case "eliminar":
+      $idUsuario = $_POST['idUsuario'];
+      Usuario::eliminar($idUsuario);
+    break;
     case "getByCiContrasena":
       $ci = $_POST['ci'];
       $contrasena = $_POST['contrasena'];
