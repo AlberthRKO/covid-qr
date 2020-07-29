@@ -7,8 +7,8 @@ initMap = function () {
     //usamos la API para geolocalizar el usuario
     navigator.geolocation.getCurrentPosition(
         function (position) {
-            $('#ejeX').val(position.coords.longitude);
-            $('#ejeY').val(position.coords.latitude);
+            $('#ejeY').val(position.coords.longitude);
+            $('#ejeX').val(position.coords.latitude);
             coords = {
                 lng: position.coords.longitude,
                 lat: position.coords.latitude
@@ -63,8 +63,8 @@ function setMapa(coords) {
 
     marker.addListener('dragend', function (event) {
         //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
-        document.getElementById("ejeX").value = this.getPosition().lng();
-        document.getElementById("ejeY").value = this.getPosition().lat();
+        document.getElementById("ejeY").value = this.getPosition().lng();
+        document.getElementById("ejeX").value = this.getPosition().lat();
     });
 }
 

@@ -45,6 +45,22 @@
             }
         }
 
+        public static function editar($usuario){
+            include('../connection.php');
+            $query = $db->prepare("UPDATE usuarios SET NOMBRES=?,APELLIDOS=?,CI=?,ESTADO=? WHERE IDUSUARIO=?");
+
+            $query->bind_param("ssssi", $usuario->nombres, $usuario->apellidos,$usuario->ci,$usuario->estado,$usuario->idUsuario);
+
+            if($query->execute()){
+	            return "Datos editados correctamente";
+                $query->close();
+                
+            } else {
+                echo "Error al realizar la consulta: ".$query->error;
+                $query->close();
+            }
+        }
+
         public static function getByCiContrasena($ci,$contrasena){
             include('../connection.php');
             $query = $db->prepare("SELECT * FROM usuarios WHERE CI=? AND CONTRASENA=? AND ACTIVO='1'");
@@ -100,6 +116,36 @@
                 //Cerramos la conexion
                 $query->close();
                 return $usuario;
+                
+            } else
+                exit('Error al realizar la consulta: '.$query->close());
+        }
+
+        public static function getTodosUsuarios(){
+            include('../connection.php');
+            $query = $db->prepare("SELECT * FROM usuarios WHERE ACTIVO='1'");
+
+            $usuarios = array();
+            //Ejecutamos la consulta
+            if($query->execute()){
+                
+                //Alamacenaos los datos de la consulta
+                $query->store_result();
+                
+                if($query->num_rows == 0)
+                    return null;
+                
+                //Indicamos la variable donde se guardaran los resultados
+                $query->bind_result($idUsuario,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,$activo);
+                
+                //listamos todos los resultados
+                while($query->fetch()){
+                    $usuarioActual = new Usuario($idUsuario,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,$activo);
+                    array_push($usuarios,$usuarioActual);
+                }
+                //Cerramos la conexion
+                $query->close();
+                return $usuarios;
                 
             } else
                 exit('Error al realizar la consulta: '.$query->close());

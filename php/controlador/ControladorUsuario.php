@@ -16,6 +16,15 @@
       $usuario = new Usuario(1,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,'1');
       Usuario::insertar($usuario);
     break;
+    case "editar":
+      $idUsuario = $_POST['idUsuario'];
+      $ci = $_POST['ci'];
+      $nombres = $_POST['nombres'];
+      $apellidos = $_POST['apellidos'];
+      $estado = $_POST['estado'];
+      $usuario = new Usuario($idUsuario,$ci,$nombres,$apellidos,'','','','',$estado,'','','1');
+      Usuario::editar($usuario);
+    break;
     case "getByCiContrasena":
       $ci = $_POST['ci'];
       $contrasena = $_POST['contrasena'];
@@ -30,6 +39,13 @@
       $usuario = Usuario::getByCi($ci);
       if($usuario != null)
         echo $usuario;
+      else
+        echo "empty";
+    break;
+    case "getTodosUsuarios":
+      $usuarios = Usuario::getTodosUsuarios();
+      if($usuarios != null)
+        echo json_encode($usuarios);
       else
         echo "empty";
     break;
