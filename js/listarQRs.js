@@ -1,28 +1,28 @@
 var ubicaciones = new Array();
 var actualIdUbicacion;
 var usuario;
-$(document).ready(function (){
+$(document).ready(function () {
     comprobarAdmin();
     getTodasUbicaciones();
     listarUbicaciones();
 });
 
-$('#listarPuntos').click(function(){
+$('#listarPuntos').click(function () {
     dibujarMapa(ubicaciones);
     $('#mapa').modal("show");
 });
 
-function comprobarAdmin(){
-    if(sessionStorage.usuario){
+function comprobarAdmin() {
+    if (sessionStorage.usuario) {
         usuario = JSON.parse(sessionStorage.usuario);
         usuario = JSON.parse(usuario);
-        if(usuario.rol == "1")
+        if (usuario.rol == "1")
             window.location.href = "index.html";
     }
 }
 
-function getTodasUbicaciones(){
-    url="php/controlador/ControladorUbicacion.php";
+function getTodasUbicaciones() {
+    url = "php/controlador/ControladorUbicacion.php";
     data = {
         'request': 'getTodasUbicaciones'
     };
@@ -31,14 +31,14 @@ function getTodasUbicaciones(){
         type: "POST",
         async: false,
         data: data,
-        success: function(result){
-            if(result.trim() != "empty")
+        success: function (result) {
+            if (result.trim() != "empty")
                 ubicaciones = JSON.parse(result.trim());
         }
     });
 }
 
-function listarUbicaciones(){
+function listarUbicaciones() {
     ubicaciones.forEach(ubicacion => {
         let html = `<tr id="fila${ubicacion.idUbicacion}">
                         <td>${ubicacion.idUbicacion}</td>
@@ -63,7 +63,7 @@ function listarUbicaciones(){
                             </a>
                             <a class="dark p-0" data-original-title="" title=""
                                 data-toggle="modal" onclick="mostrarImprimirQRModal(${ubicacion.idUbicacion});">
-                                <i class="icon-print font-medium-3 mr-2"></i>
+                                <i class="icon-eye font-medium-3 mr-2"></i>
                             </a>
                         </td>
                     </tr>`;
@@ -71,18 +71,18 @@ function listarUbicaciones(){
     });
 }
 
-function getColorRiesgo(ubicacion){
+function getColorRiesgo(ubicacion) {
     let riesgoHtml;
-    if(ubicacion.gravedad == "ALTO")
+    if (ubicacion.gravedad == "ALTO")
         riesgoHtml = `<span class="badge badge-danger" id="riesgo${ubicacion.idUbicacion}">`;
-    if(ubicacion.gravedad == "MEDIO")
+    if (ubicacion.gravedad == "MEDIO")
         riesgoHtml = `<span class="badge badge-warning" id="riesgo${ubicacion.idUbicacion}">`;
-    if(ubicacion.gravedad == "BAJO")
+    if (ubicacion.gravedad == "BAJO")
         riesgoHtml = `<span class="badge badge-success" id="riesgo${ubicacion.idUbicacion}">`;
     return riesgoHtml;
 }
 
-function mostrarEditarQRModal(idUbicacion){
+function mostrarEditarQRModal(idUbicacion) {
     actualIdUbicacion = idUbicacion;
     let nombre = $('#nombre' + idUbicacion).html();
     let ejeX = $('#ejeX' + idUbicacion).html();
@@ -94,7 +94,7 @@ function mostrarEditarQRModal(idUbicacion){
     $("#editarQR").modal("show");
 }
 
-function mostrarEliminarQRModal(idUbicacion){
+function mostrarEliminarQRModal(idUbicacion) {
     actualIdUbicacion = idUbicacion;
     let nombre = $('#nombre' + idUbicacion).html();
     let html = `Estas seguro que desea eliminar QR de <span class="font-weight-bold" id="deleteQR">${nombre}</span>?`;
@@ -102,7 +102,7 @@ function mostrarEliminarQRModal(idUbicacion){
     $('#eliminarQR').modal("show");
 }
 
-function mostrarImprimirQRModal(idUbicacion){
+function mostrarImprimirQRModal(idUbicacion) {
     actualIdUbicacion = idUbicacion;
     let nombre = $('#nombre' + idUbicacion).html();
     let riesgo = $('#riesgo' + idUbicacion).html();
@@ -122,7 +122,7 @@ function mostrarqr() {
     document.getElementById('mostrar').style.setProperty('display', 'block', 'important');
 }
 
-$('#btnEliminar').click(function(){
+$('#btnEliminar').click(function () {
     data = {
         request: 'eliminar',
         idUbicacion: actualIdUbicacion
@@ -132,23 +132,23 @@ $('#btnEliminar').click(function(){
         type: "POST",
         async: false,
         data: data,
-        success: function(result){
+        success: function (result) {
             console.log(result);
         }
     });
-    $('#fila'+actualIdUbicacion).fadeOut(500);
+    $('#fila' + actualIdUbicacion).fadeOut(500);
     $('#btnCancelar2').click();
 });
 
-$('#btnUbicacion').click(function(){
+$('#btnUbicacion').click(function () {
     initMap();
 });
 
-$('#btnGuardar').click(function(){
+$('#btnGuardar').click(function () {
     let nombre = $('#nombre').val();
     let ejeX = $('#ejeX').val();
     let ejeY = $('#ejeY').val();
-    let url="php/controlador/ControladorUbicacion.php";
+    let url = "php/controlador/ControladorUbicacion.php";
     data = {
         request: 'editar',
         idUbicacion: actualIdUbicacion,
@@ -164,10 +164,10 @@ $('#btnGuardar').click(function(){
     });
     $('#btnCancelar').click();
     alert("EDITADO EXITOSAMENTE");
-    editarFila(actualIdUbicacion,nombre,ejeX,ejeY);
+    editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
 });
 
-function editarFila(idUbicacion,nombre,ejeX,ejeY){
+function editarFila(idUbicacion, nombre, ejeX, ejeY) {
     $('#nombre' + idUbicacion).html(nombre);
     $('#ejeX' + idUbicacion).html(ejeX);
     $('#ejeY' + idUbicacion).html(ejeY);

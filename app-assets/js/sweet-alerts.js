@@ -30,7 +30,19 @@ $(document).ready(function () {
   });
 
   $('#type-success').on('click', function () {
-    swal("Good job!", "You clicked the button!", "success");
+    swal("Guardado", "Registro exitoso !", "success");
+  });
+  $('#btnGuardar').on('click', function () {
+    swal("Guardado", "Registro exitoso !", "success");
+  });
+  $('#btnRegistrar').on('click', function () {
+    swal("Guardado", "Registro exitoso !", "success");
+  });
+  $('#type-success2').on('click', function () {
+    swal("Editado", "Registro editado !", "success");
+  });
+  $('#btnEliminar').on('click', function () {
+    swal("Eliminado", "Registro eliminado !", "success");
   });
 
   $('#type-info').on('click', function () {
@@ -198,17 +210,17 @@ $(document).ready(function () {
     });
 
     var steps = [{
-        title: 'Step 1',
-        text: 'Chaining modals is easy with Step 1'
-      },
-      {
-        title: 'Step 2',
-        text: 'Chaining modals is easy with Step 2'
-      },
-      {
-        title: 'Step 3',
-        text: 'Chaining modals is easy with Step 3'
-      },
+      title: 'Step 1',
+      text: 'Chaining modals is easy with Step 1'
+    },
+    {
+      title: 'Step 2',
+      text: 'Chaining modals is easy with Step 2'
+    },
+    {
+      title: 'Step 3',
+      text: 'Chaining modals is easy with Step 3'
+    },
     ];
 
     swal.queue(steps).then(function () {

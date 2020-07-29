@@ -283,6 +283,11 @@ th {
     border-right: solid 5px #fe5f55;
 }
 
+.swal2-modal .swal2-confirm {
+    background-color: #207dff !important;
+    border: none !important;
+}
+
 @media (max-width: 992px) {
     .navbar-header .navbar-toggle {
         margin: 10px 0 10px 0;
