@@ -12,6 +12,10 @@ $('#listarPuntos').click(function () {
     $('#mapa').modal("show");
 });
 
+$('#btnGuardarUbicacion').click(function(){
+    $('#mapa').modal("hide");
+})
+
 function comprobarAdmin() {
     if (sessionStorage.usuario) {
         usuario = JSON.parse(sessionStorage.usuario);
@@ -87,7 +91,6 @@ function mostrarEditarQRModal(idUbicacion) {
     let nombre = $('#nombre' + idUbicacion).html();
     let ejeX = $('#ejeX' + idUbicacion).html();
     let ejeY = $('#ejeY' + idUbicacion).html();
-    console.log(`${nombre} ${ejeX} ${ejeY}`);
     $('#nombre').val(nombre);
     $('#ejeX').val(ejeX);
     $('#ejeY').val(ejeY);
@@ -132,17 +135,20 @@ $('#btnEliminar').click(function () {
         url: url,
         type: "POST",
         async: false,
-        data: data,
-        success: function (result) {
-            console.log(result);
-        }
+        data: data
     });
     $('#fila' + actualIdUbicacion).fadeOut(1000);
     $('#btnCancelar2').click();
 });
 
 $('#btnUbicacion').click(function () {
-    initMap();
+    ejeX = $('#ejeX').val();
+    ejeY = $('#ejeY').val();
+    ubicacion = {
+        ejeX: ejeX,
+        ejeY: ejeY
+    }
+    editMap(ubicacion);
 });
 
 $('#btnGuardar').click(function () {

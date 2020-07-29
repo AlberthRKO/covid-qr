@@ -86,7 +86,7 @@ function insertar(){
         }
     });
     limpiar();
-    alert("UBICACION AÑADIDA EXITOSAMENTE");
+    swal("Guardado", "Registro exitoso !", "success");
 }
 
 function limpiar(){
