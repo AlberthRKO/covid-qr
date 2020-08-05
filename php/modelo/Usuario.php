@@ -109,9 +109,9 @@
 
         public static function getByCi($ci){
             include('../connection.php');
-            $query = $db->prepare("SELECT * FROM usuarios WHERE CI=? AND ACTIVO='1'");
+            $query = $db->prepare("SELECT * FROM usuarios WHERE CI LIKE'".$ci."__.' AND ACTIVO='1'");
 
-            $query->bind_param("s", $ci);
+            //$query->bind_param("s", $ci);
             $usuario = null;
             //Ejecutamos la consulta
             if($query->execute()){

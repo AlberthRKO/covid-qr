@@ -64,7 +64,7 @@ function listarUsuarios(){
 }
 
 function mostrarEditarUsuarioModal(idUsuario){
-    actualIdUsuario = idUsuario;////////////////////////falta editar usuario y eliminar con la bd
+    actualIdUsuario = idUsuario;
     let nombres = $('#nombres' + idUsuario).html();
     let apellidos = $('#apellidos' + idUsuario).html();
     let ci = $('#ci' + idUsuario).html();
@@ -167,7 +167,7 @@ function getEtiquetaEstado(usuario){
     if(usuario.estado == "RECUPERADO")
         estadoHtml = `<span class="badge badge-success" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
     if(usuario.estado == "FALLECIDO")
-        estadoHtml = `<span class="badge badge-danger id="estado${usuario.idUsuario}"">${usuario.estado}</span>`;
+        estadoHtml = `<span class="badge badge-danger" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
 
     return estadoHtml;
 }

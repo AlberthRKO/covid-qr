@@ -92,7 +92,7 @@ function validarUbicacion(){
 function validarCiExistente(){
     if($('#ci').val().trim() == "")
         return false;
-    let ci = $('#ci').val().trim() + $('select[name=extension]').val();
+    let ci = $('#ci').val().trim();
     let exists = checkUsuario(ci);
     if(!exists){
         $('#alertaCi').removeClass("alert alert-danger");
