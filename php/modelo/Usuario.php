@@ -127,7 +127,7 @@
                 
                 //listamos todos los resultados
                 while($query->fetch()){
-                    $usuario = "exists";
+                    $usuario = new Usuario($idUsuario,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,$activo);
                 }
                 //Cerramos la conexion
                 $query->close();

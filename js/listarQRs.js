@@ -152,6 +152,50 @@ $('#btnUbicacion').click(function () {
 });
 
 $('#btnGuardar').click(function () {
+    if(hayError())
+        return;
+    editar();
+});
+
+function hayError(){
+    errorEjes = validarEjes();
+    errorNombre = validarNombre();
+    if(errorNombre || errorEjes)
+        return true;
+    return false;
+}
+
+function validarNombre(){
+    let nombre = $('#nombre').val();
+    if(nombre.trim() != ""){
+        $('#alertaNombre').removeClass("alert alert-danger");
+        $('#alertaNombreMensaje').fadeOut();
+        return false;
+    }
+    else{
+        $('#alertaNombre').addClass("alert alert-danger");
+        $('#alertaNombreMensaje').fadeIn();
+        $('#nombre').focus();
+        return true;
+    }
+}
+
+function validarEjes(){
+    let ejeX = $('#ejeX').val();
+    let ejeY = $('#ejeY').val();
+    if(ejeX.trim() != "" && ejeY.trim() != ""){
+        $('#alertaEjes').removeClass("alert alert-danger");
+        $('#alertaEjesMensaje').fadeOut();
+        return false;
+    }
+    else{
+        $('#alertaEjes').addClass("alert alert-danger");
+        $('#alertaEjesMensaje').fadeIn();
+        return true;
+    }
+}
+
+function editar(){
     let nombre = $('#nombre').val();
     let ejeX = $('#ejeX').val();
     let ejeY = $('#ejeY').val();
@@ -171,12 +215,13 @@ $('#btnGuardar').click(function () {
     });
     $('#btnCancelar').click();
     editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
-});
+}
 
 function editarFila(idUbicacion, nombre, ejeX, ejeY) {
     $('#nombre' + idUbicacion).html(nombre);
     $('#ejeX' + idUbicacion).html(ejeX);
     $('#ejeY' + idUbicacion).html(ejeY);
+    swal("Guardado", "Editado exitosamente !", "success");
 }
 
 

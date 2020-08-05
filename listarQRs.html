@@ -232,14 +232,17 @@
                 <!-- contenido -->
                 <div class="modal-body text-center">
                     <form action="#">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text icon-location_city"></span>
+                        <div id="alertaNombre">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text icon-location_city"></span>
+                                    </div>
+                                    <input type="text" class="form-control inputsito" name="zona" id="nombre"
+                                        placeholder="Zona">
                                 </div>
-                                <input type="text" class="form-control inputsito" name="zona" id="nombre"
-                                    placeholder="Zona">
                             </div>
+                            <p id="alertaNombreMensaje" style="display:none;">INGRESE LA ZONA</p>
                         </div>
 
 
@@ -269,31 +272,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6 pr-1">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-edit_location"></span>
+                        <div id="alertaEjes">
+                            <div class="row">
+                                <div class="col-6 pr-1">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-edit_location"></span>
+                                            </div>
+                                            <input type="number" class="form-control inputsito" name="ejeX" id="ejeX"
+                                                placeholder="Latitud">
                                         </div>
-                                        <input type="number" class="form-control inputsito" name="ejeX" id="ejeX"
-                                            placeholder="Latitud">
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-edit_location"></span>
+                                            </div>
+                                            <input type="number" class="form-control inputsito" name="ejeY" id="ejeY"
+                                                placeholder="Longitud">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 pl-1">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text icon-edit_location"></span>
-                                        </div>
-                                        <input type="number" class="form-control inputsito" name="ejeY" id="ejeY"
-                                            placeholder="Longitud">
-                                    </div>
-                                </div>
-                            </div>
+                            <p id="alertaEjesMensaje" style="display:none;">INGRESE LA UBICACIÓN</p>
                         </div>
-
 
 
                     </form>
@@ -418,7 +423,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
     <script src="js/jquery-qrcode.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/listarQRs.js"></script>
+    <script src="js/listarQRs.js?v=2"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="app-assets/vendors/js/sweetalert2.min.js" type="text/javascript"></script>

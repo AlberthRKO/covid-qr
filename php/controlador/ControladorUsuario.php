@@ -42,7 +42,7 @@
       $ci = $_POST['ci'];
       $usuario = Usuario::getByCi($ci);
       if($usuario != null)
-        echo $usuario;
+        echo json_encode($usuario);
       else
         echo "empty";
     break;

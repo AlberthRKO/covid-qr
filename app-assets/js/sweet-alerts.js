@@ -32,9 +32,6 @@ $(document).ready(function () {
   $('#type-success').on('click', function () {
     swal("Guardado", "Registro exitoso !", "success");
   });
-  $('#btnGuardar').on('click', function () {
-    swal("Guardado", "Registro exitoso !", "success");
-  });
   $('#type-success2').on('click', function () {
     swal("Editado", "Registro editado !", "success");
   });

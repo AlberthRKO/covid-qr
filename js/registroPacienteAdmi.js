@@ -134,7 +134,7 @@ function checkUsuario(ci){
         async: false,
         data: data,
         success : result => {
-            if(result == "exists")
+            if(result != "empty")
                 exists = true;
         }
     });

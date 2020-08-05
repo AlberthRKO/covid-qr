@@ -4,7 +4,6 @@ $(document).ready(function (){
     comprobarAdmin();
     getTodosUsuarios();
     listarUsuarios();
-    console.log("ASDF");
 });
 
 function comprobarAdmin(){
@@ -81,6 +80,108 @@ function mostrarEditarUsuarioModal(idUsuario){
 }
 
 $('#btnGuardar').click(function(){
+    if(hayError())
+        return;
+    editar();
+});
+
+function hayError(){
+    let errorCi1 = validarCi();
+    let errorCi2 = validarCiExistente();
+    let errorApellidos = validarApellidos();
+    let errorNombres = validarNombres();
+    if(errorNombres || errorApellidos || errorCi1 || errorCi2)
+        return true;
+    return false;
+}
+
+function validarNombres(){
+    let nombres = $('#nombres').val();
+    if(nombres.trim() != ""){
+        $('#alertaNombres').removeClass("alert alert-danger");
+        $('#alertaNombresMensaje').fadeOut();
+        return false;
+    }
+    else{
+        $('#alertaNombres').addClass("alert alert-danger");
+        $('#alertaNombresMensaje').fadeIn();
+        $('#nombres').focus();
+        return true;
+    }
+}
+
+function validarApellidos(){
+    let apellidos = $('#apellidos').val();
+    if(apellidos.trim() != ""){
+        $('#alertaApellidos').removeClass("alert alert-danger");
+        $('#alertaApellidosMensaje').fadeOut();
+        return false;
+    }
+    else{
+        $('#alertaApellidos').addClass("alert alert-danger");
+        $('#alertaApellidosMensaje').fadeIn();
+        $('#apellidos').focus();
+        return true;
+    }
+}
+
+function validarCi(){
+    let ci = $('#ci').val();
+    if(ci.trim() != ""){
+        $('#alertaCi').removeClass("alert alert-danger");
+        $('#alertaCiMensaje1').fadeOut();
+        return false;
+    }
+    else{
+        $('#alertaCi').addClass("alert alert-danger");
+        $('#alertaCiMensaje1').fadeIn();
+        $('#ci').focus();
+        return true;
+    }
+}
+
+function validarCiExistente(){
+    if($('#ci').val().trim() == "")
+        return false;
+    let ci = $('#ci').val().trim();
+    let exists = checkUsuario(ci);
+    if(!exists){
+        $('#alertaCi').removeClass("alert alert-danger");
+        $('#alertaCiMensaje2').fadeOut();
+        return false;
+    }
+    else{
+        $('#alertaCi').addClass("alert alert-danger");
+        $('#alertaCiMensaje2').fadeIn();
+        $('#ci').focus();
+        return true;
+    }
+}
+
+function checkUsuario(ci){
+    let exists = false;
+    url="php/controlador/ControladorUsuario.php";
+    data = {
+        'request': 'getByCi',
+        'ci': ci
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success : result => {
+            if(result != "empty"){
+                let usuario = JSON.parse(result);
+                if(usuario.idUsuario != actualIdUsuario)
+                    exists = true;
+            }
+        }
+    });
+    return exists;
+}
+
+function editar(){
     let nombres = $('#nombres').val();
     let apellidos = $('#apellidos').val();
     let ci = $('#ci').val();
@@ -115,7 +216,7 @@ $('#btnGuardar').click(function(){
         estado: estado
     }
     editarFila(usuario);
-});
+}
 
 function editarFila(usuario){
     let idUsuario = usuario.idUsuario;
@@ -125,6 +226,7 @@ function editarFila(usuario){
     $('#apellidos' + idUsuario).html(usuario.apellidos);
     let etiquetaEstado = getEtiquetaEstado(usuario);
     $('#filaEstado' + idUsuario).html(etiquetaEstado);
+    swal("Guardado", "Editado exitosamente !", "success");
 }
 
 
