@@ -56,7 +56,8 @@ const dibujarMapa = (ubicaciones) => {
         new google.maps.Marker({
             map: mapa,
             position:{lat: parseFloat(ubicacion.ejeX), lng: parseFloat(ubicacion.ejeY)},//lat es ejeX para nosotros y lng ejeY xd
-            title: ubicacion.nombre
+            title: ubicacion.nombre,
+            icon: 'images/foco2.png'
         });
     });
 };
