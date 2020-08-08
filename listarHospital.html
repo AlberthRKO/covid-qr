@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sweetalert2.min.css">
 
+
     <link rel="stylesheet" href="css/ionicons.min.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
@@ -92,7 +93,7 @@
                         <li class="has-sub nav-item"><a href="#"><i class="icon-people"></i><span data-i18n=""
                                     class="menu-title">Pacientes</span></a>
                             <ul class="menu-content">
-                                <li class="active"><a href="listaPacientes.html" class="menu-item">Listar Paciente</a>
+                                <li><a href="listaPacientes.html" class="menu-item">Listar Paciente</a>
                                 </li>
                                 <li><a href="registroPaciente admi.html" class="menu-item">Crear Paciente</a>
                                 </li>
@@ -114,7 +115,7 @@
                                 <li><a href="registroHospital.html" class="menu-item">Crear
                                         Hospital</a>
                                 </li>
-                                <li><a href="listarHospital.html" class="menu-item">Listar Hospitales</a>
+                                <li class="active"><a href="listarHospital.html" class="menu-item">Listar Hospitales</a>
                                 </li>
                             </ul>
                         </li>
@@ -187,15 +188,80 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>C.I.</th>
-                                            <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            <th>Origen</th>
-                                            <th>Estado</th>
+                                            <th>Hospital</th>
+                                            <th>Latitud</th>
+                                            <th>Longitud</th>
+                                            <th>Cant. Pacientes</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabla">
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Santa Barbara</td>
+                                            <td>-19.2688533</td>
+                                            <td>-16.5992244</td>
+                                            <td>15</td>
+                                            <td>
+                                                <a class="success p-0" data-original-title="" title=""
+                                                    data-toggle="modal" data-target="#editarHospital">
+                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="danger p-0" data-original-title="" title=""
+                                                    data-toggle="modal" data-target="#eliminarHospital">
+                                                    <i class="icon-close font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="dark p-0" data-original-title="" title="" data-toggle="modal"
+                                                    data-target="#verPacientes">
+                                                    <i class="icon-people font-medium-3 mr-2"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jaime Mendoza</td>
+                                            <td>-19.2688475</td>
+                                            <td>-16.5992289</td>
+                                            <td>5</td>
+                                            <td>
+                                                <a class="success p-0" data-original-title="" title=""
+                                                    data-toggle="modal" data-target="#editarHospital">
+                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="danger p-0" data-original-title="" title=""
+                                                    data-toggle="modal" data-target="#eliminarHospital">
+                                                    <i class="icon-close font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="dark p-0" data-original-title="" title="" data-toggle="modal"
+                                                    data-target="#verPacientes">
+                                                    <i class="icon-people font-medium-3 mr-2"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>IPTK</td>
+                                            <td>-18.2688536</td>
+                                            <td>-15.5992288</td>
+                                            <td>8</td>
+                                            <td>
+                                                <a class="success p-0" data-original-title="" title=""
+                                                    data-toggle="modal" data-target="#editarHospital">
+                                                    <i class="icon-mode_edit font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="danger p-0" data-original-title="" title=""
+                                                    data-toggle="modal" data-target="#eliminarHospital">
+                                                    <i class="icon-close font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="dark p-0" data-original-title="" title="" data-toggle="modal"
+                                                    data-target="#verPacientes">
+                                                    <i class="icon-people font-medium-3 mr-2"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
 
                                     </tbody>
 
@@ -212,12 +278,17 @@
 
 
                 </div>
+                <center><button type="button" class="btn btn-primary" id="listarPuntosHospitales">Ubicacion de
+                        Hospitales</button>
+                </center>
             </div>
+
             <!-- END : End Main Content-->
 
 
 
         </div>
+
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
@@ -225,87 +296,88 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="editar">
+    <div class="modal fade" id="editarHospital">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Contenido del modal -->
                 <div class="modal-header">
-                    <h4 class="modal-title text-uppercase">Datos Usuario
+                    <h4 class="modal-title text-uppercase">Datos del Hospital
                     </h4>
                     <!-- data-dismis cierra el modal  -->
                     <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- contenido -->
-                <div class="modal-body">
-                    <form action="index.html">
-                        <div id="alertaNombres">
+                <div class="modal-body text-center">
+                    <form action="#">
+                        <div id="alertaNombre">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text icon-user"></span>
+                                        <span class="input-group-text icon-location_city"></span>
                                     </div>
-                                    <input type="text" class="form-control inputsito" name="nombres" id="nombres"
-                                        placeholder="Nombres">
+                                    <input type="text" class="form-control inputsito" name="zona" id="nombre"
+                                        placeholder="Nombre del Hospital">
                                 </div>
                             </div>
-                            <p id="alertaNombresMensaje" style="display:none;">INGRESE SUS NOMBRES
-                            </p>
-                        </div>
-                        <div id="alertaApellidos">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text icon-user"></span>
-                                    </div>
-                                    <input type="text" class="form-control inputsito" name="apellidos" id="apellidos"
-                                        placeholder="Apellidos">
-                                </div>
-                            </div>
-                            <p id="alertaApellidosMensaje" style="display:none;">INGRESE SUS APELLIDOS
-                            </p>
-                        </div>
-                        <div id="alertaCi">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text icon-user"></span>
-                                    </div>
-                                    <input type="text" class="form-control inputsito" name="ci" id="ci"
-                                        placeholder="CI">
-                                    <select name="extension" id="extension">
-                                        <option value="CH.">CH.</option>
-                                        <option value="TJ.">TJ.</option>
-                                        <option value="PD.">PD.</option>
-                                        <option value="SC.">SC.</option>
-                                        <option value="LP.">LP.</option>
-                                        <option value="OR.">OR.</option>
-                                        <option value="CB.">CB.</option>
-                                        <option value="PO.">PO.</option>
-                                        <option value="BE.">BE.</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <p id="alertaCiMensaje1" style="display:none;">
-                                INGRESE SU C.I.</p>
-                            <p id="alertaCiMensaje2" style="display:none;">
-                                ESTE C.I. YA TIENE UNA CUENTA
-                                REGISTRADA</p>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text icon-tune"></span>
-                                </div>
-                                <select class="form-control inputsito" id="estado" name="estado">
-                                    <option disabled selected>Estado</option>
-                                    <option value="NORMAL">Normal</option>
-                                    <option value="CONFIRMADO">Confirmado</option>
-                                    <option value="RECUPERADO">Recuperado</option>
-                                    <option value="FALLECIDO">Fallecido</option>
-                                </select>
-                            </div>
+                            <p id="alertaNombreMensaje" style="display:none;">INGRESE EL NOMBRE DEL HOSPITAL</p>
                         </div>
 
+
+                        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#mapa"
+                            id="btnUbicacion">Marque la ubicación</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="mapa">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <!-- Contenido del modal -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-uppercase">Indique la ubicacion del
+                                            Hospital</h4>
+                                        <!-- data-dismis cierra el modal  -->
+                                        <button type="button" class="close" style="outline: 0;"
+                                            data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- contenido -->
+                                    <div class="modal-body">
+                                        <div id="map"></div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                        <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Guardar</button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="alertaEjes">
+                            <div class="row">
+                                <div class="col-6 pr-1">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-edit_location"></span>
+                                            </div>
+                                            <input type="number" class="form-control inputsito" name="ejeX" id="ejeX"
+                                                placeholder="Latitud">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-edit_location"></span>
+                                            </div>
+                                            <input type="number" class="form-control inputsito" name="ejeY" id="ejeY"
+                                                placeholder="Longitud">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p id="alertaEjesMensaje" style="display:none;">INGRESE LA UBICACIÓN</p>
+                        </div>
 
 
                     </form>
@@ -323,18 +395,19 @@
 
 
 
-    <div class="modal fade" id="eliminar">
+    <div class="modal fade" id="eliminarHospital">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Contenido del modal -->
                 <div class="modal-header">
-                    <h4 class="modal-title text-uppercase">Eliminar Usuario</h4>
+                    <h4 class="modal-title text-uppercase">Eliminar Hospital</h4>
                     <!-- data-dismis cierra el modal  -->
                     <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- contenido -->
-                <div class="modal-body" id="mensajeEliminar">
-
+                <div class="modal-body">
+                    <p id="mensajeEliminar">Estas seguro de eliminar el Hospital <span class="font-weight-bold">Santa
+                            Barbara</span> ?</p>
                 </div>
                 <div class="modal-footer d-flex justify-content-around">
                     <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
@@ -370,6 +443,73 @@
         </div>
     </div>
 
+    <div class="modal fade" id="verPacientes">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Contenido del modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-uppercase">Pacientes del Hospital <span class="font-weight-bold">Santa
+                            Barbara</span></h4>
+                    <!-- data-dismis cierra el modal  -->
+                    <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- contenido -->
+                <div class="modal-body">
+                    <div class="table-responsive">
+
+                        <table class="table text-center estiloTabla">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>C.I.</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Origen</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla">
+
+                                <tr>
+                                    <td>1</td>
+                                    <td>10154580</td>
+                                    <td>Ronald</td>
+                                    <td>Perez</td>
+                                    <td>CH.</td>
+                                    <td><span class="badge badge-primary">CONFIRMADO</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>10154547</td>
+                                    <td>Ezequiel Talabera</td>
+                                    <td>Perez</td>
+                                    <td>TJ.</td>
+                                    <td><span class="badge badge-success">RECUPERADO</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>10154588</td>
+                                    <td>Richard</td>
+                                    <td>Guzman</td>
+                                    <td>PD.</td>
+                                    <td><span class="badge badge-danger">FALLECIDO</span></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Imprimir</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -397,13 +537,25 @@
     <!-- END APEX JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/dashboard1.js" type="text/javascript"></script>
-    <script src="js/listarPacientes.js?v=2"></script>
 
 
+    <script src="js/maps.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
+    <script src="js/main.js"></script>
+    <!-- BEGIN VENDOR JS-->
+
+
+    <script src="js/registroQR.js?v=2"></script>
+
+    <!-- BEGIN PAGE VENDOR JS-->
     <script src="app-assets/vendors/js/sweetalert2.min.js" type="text/javascript"></script>
 
 
-    <script src="app-assets/js/sweet-alerts.js?v=10" type="text/javascript"></script>
+    <script src="app-assets/js/sweet-alerts.js?v=2" type="text/javascript"></script>
+
+
+
     <!-- END PAGE LEVEL JS-->
 </body>
 <!-- END : Body-->

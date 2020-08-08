@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/misEstilos.css">
 
@@ -54,27 +55,21 @@
                     </li>
                     <li class="nav-item"><a href="#blog-section" class="nav-link text-dark"><span>Prevencion</span></a>
                     </li>
-                    <li class="nav-item"><a href="pruebaqr.html" class="nav-link text-dark"><span>Código QR de prueba</span></a>
+                    <li class="nav-item"><a href="#app" class="nav-link text-dark"><span>Uso App</span></a>
                     </li>
+                    <li class="nav-item cta2" style="margin-top: 2px;"><a href="admin.html"
+                            class="nav-link font-weight-bold" id="btn">Iniciar
+                            Sesión</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="py-3 " data-aos="zoom-in-up" data-aos-duration="1500">
-        <div class="container text-center">
-            <h3 class="text-center mb-1 font-weight-bold">Escanea nuestro QR en el punto de control que estes</h3>
-            <p class="text-center font-weight-bold">Visualiza la cantidad de <span
-                    class="text-primary mx-2">activos</span> por la zona</p>
-            <button class="btn btn-primary mb-3" id="btnQR"> Obten QR </button>
-            <div id="mostrar" class="d-none">
-                <div id="qr" class="d-inline-block p-3 mt-2" style="box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <div id="hola"></div>
+
+    <canvas id="chart" width="800" height="400"></canvas>
+
+
 
 
 
@@ -94,14 +89,49 @@
     <script src="js/aos.js"></script>
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
+    <script src="js/google-map.js?v=2"></script>
+
+    <script src="js/Chart.min.js"></script>
+
+    <script type="module">
+        // import data from './data.js'
+
+
+
+        function totalCasesChart(ctx) {
+            // Creamos la grafica
+            // new mandamos el contexto de donde se dibujara el chart y luego la configuracion
+            const chart = new Chart(ctx, {
+                // El tipo de grafica
+                type: 'line',
+                // data.. informacion que pondremos en el nivel X y Y
+                data: {
+                    // eje X labels
+                    labels: [1, 20, 50, 60]
+
+                }
+            })
+        }
+
+        function renderCharts() {
+            const ctx = document.querySelector('#chart').getContext('2d')
+            totalCasesChart(ctx)
+        }
+
+        renderCharts()
+
+    </script>
 
     <script src="js/main.js"></script>
-    <script src="js/jquery-qrcode.min.js"></script>
-    <!-- <script src="js/jquery.qrcode.min.js"></script> -->
-    <script src="js/pruebaqr.js"></script>
+    <script src="js/tablaCovid.js"></script>
+    <script src="js/index.js?v=3"></script>
+
+
+
+
+
 
 </body>
 

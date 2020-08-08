@@ -101,17 +101,16 @@
                         <li class="has-sub nav-item"><a href="#"><i class="icon-qrcode"></i><span data-i18n=""
                                     class="menu-title">QR</span></a>
                             <ul class="menu-content">
-                                <li class="active"><a href="registroQR.html" class="menu-item">Crear QR</a>
+                                <li><a href="registroQR.html" class="menu-item">Crear QR</a>
                                 </li>
                                 <li><a href="listarQRs.html" class="menu-item">Listar QR's</a>
                                 </li>
                             </ul>
                         </li>
-
                         <li class="has-sub nav-item"><a href="#"><i class="icon-local_hospital"></i><span data-i18n=""
                                     class="menu-title">Hospitales</span></a>
                             <ul class="menu-content">
-                                <li><a href="registroHospital.html" class="menu-item">Crear
+                                <li class="active"><a href="registroHospital.html" class="menu-item">Crear
                                         Hospital</a>
                                 </li>
                                 <li><a href="listarHospital.html" class="menu-item">Listar Hospitales</a>
@@ -182,13 +181,14 @@
                             <div class="row ">
                                 <div
                                     class="col-lg-6 d-lg-block d-none text-center align-self-center px-3 px-xl-5 py-3 ">
-                                    <img src="images/login/qr.svg" alt="" class="img-fluid">
+                                    <img src="images/login/hospital.svg" alt="" class="img-fluid">
                                 </div>
 
                                 <div class="col-lg-6 col-12 py-3 pr-lg-4 text-center">
 
 
-                                    <h4 class="text-center  h2 text-uppercase pb-3">Registra un QR</h4>
+                                    <h4 class="text-center  h2 text-uppercase pb-3">Hospital para atencion de Covid-19
+                                    </h4>
                                     <form action="#">
                                         <div id="alertaNombre">
                                             <div class="form-group">
@@ -197,10 +197,11 @@
                                                         <span class="input-group-text icon-location_city"></span>
                                                     </div>
                                                     <input type="text" class="form-control inputsito" name="zona"
-                                                        id="nombre" placeholder="Zona">
+                                                        id="nombre" placeholder="Nombre del Hospital">
                                                 </div>
                                             </div>
-                                            <p id="alertaNombreMensaje" style="display:none;">INGRESE LA ZONA</p>
+                                            <p id="alertaNombreMensaje" style="display:none;">INGRESE EL NOMBRE DEL
+                                                HOSPITAL</p>
                                         </div>
 
                                         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal"
@@ -212,8 +213,8 @@
                                                 <div class="modal-content">
                                                     <!-- Contenido del modal -->
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title text-uppercase">Indique la ubicacion para
-                                                            el punto QR</h4>
+                                                        <h4 class="modal-title text-uppercase">Indique la ubicacion del
+                                                            Hospital</h4>
                                                         <!-- data-dismis cierra el modal  -->
                                                         <button type="button" class="close" style="outline: 0;"
                                                             data-dismiss="modal">&times;</button>
@@ -277,7 +278,7 @@
 
                                         <div class="form-group px-2 px-lg-5">
                                             <button class="btn btn-primary btn-lg px-4" id="btnRegistrar">Registrar
-                                                QR</button>
+                                                Hospital</button>
                                         </div>
 
 

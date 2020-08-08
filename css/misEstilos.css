@@ -214,7 +214,7 @@ th {
     padding: 20px;
 }
 
-.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-container-horizontal>.swiper-pagination-bullets,
 .swiper-pagination-custom,
 .swiper-pagination-fraction {
     bottom: -20px;
@@ -278,8 +278,8 @@ th {
     color: rgba(0, 0, 0, 0.2) !important;
 }
 
-.app-sidebar .navigation li > a:before,
-.off-canvas-sidebar .navigation li > a:before {
+.app-sidebar .navigation li>a:before,
+.off-canvas-sidebar .navigation li>a:before {
     border-right: solid 5px #fe5f55;
 }
 
@@ -287,6 +287,26 @@ th {
     background-color: #207dff !important;
     border: none !important;
 }
+
+
+.ftco-navbar-black .navbar-nav>.nav-item.cta2>a {
+    color: #fff;
+    border: 1px solid #1f76ef;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    padding-left: 18px;
+    padding-right: 18px;
+    background: #207dff;
+    margin-top: 0;
+    font-size: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+
 
 @media (max-width: 992px) {
     .navbar-header .navbar-toggle {
@@ -322,7 +342,7 @@ th {
 }
 
 @media (min-width: 991.98px) and (max-width: 1199.98px) {
-    .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    .ftco-navbar-light .navbar-nav>.nav-item>.nav-link {
         padding-left: 0.55rem !important;
         padding-right: 0.55rem !important;
     }
