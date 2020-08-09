@@ -31,7 +31,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-black site-navbar-target"
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-black site-navbar-target fixed-top"
         id="ftco-navbar">
         <div class="container">
             <a href="#" class="text-decoration-none">
@@ -65,14 +65,81 @@
         </div>
     </nav>
 
+    <div class="pt-5"></div>
+
+    <section class="pb-3 pt-5" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div class="container">
+            <h3 class="text-center mb-3 font-weight-bold">Reporte Historico de Casos en Bolivia</h3>
+            <!-- <a class="btn btn-primary w-25 text-center mt-3" id="botonCapo">Obtener Información</a> -->
+            <div class="row contentEstado px-2 px-lg-4 py-4">
+                <canvas id="chart" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+    <section class="py-3" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div class="container">
+            <div class="row contentEstado px-2 px-lg-4 py-4">
+                <canvas id="chart2" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+    <section class="py-3" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div class="container">
+            <div class="row contentEstado px-2 px-lg-4 py-4">
+                <canvas id="chart3" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+    <section class="py-3" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div class="container">
+            <div class="row contentEstado px-2 px-lg-4 py-4">
+                <canvas id="chart4" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+    <section class="py-3 d-none d-lg-block" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div class="container">
+            <div class="row contentEstado px-2 px-lg-4 py-4">
+                <canvas id="chart5" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </section>
 
 
-    <canvas id="chart" width="800" height="400"></canvas>
 
 
+    <footer id="pie-pagina" class="text-light overflow-hidden mt-5">
 
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12  py-2 columna-inclinada col-md-6 col-xl-5">
+                    <!-- nuevo sistema para anidar -->
+                    <div class="row justify-content-center justify-content-md-start">
+                        <div class="col-12">
+                            <h2 class="text-white font-weight-bold text-center text-md-left h3"
+                                style="font-family: 'Kaushan Script',cursive;">COVID-QR</h2>
+                            </di280 <div class="col-auto text-black-50 pl-0">
+                            <p class="text-white text-center">Protege a tu familia, a tu vecino y protegete a ti.</p>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="col-12 py-2 text-center small col-md-6 text-md-right col-xl-7">
+                    <ul class="list-unstyled d-inline-flex text-uppercase enlaces-secundario">
+                        <li class="nav-item"><a href="#home-section" class="nav-link text-dark"><span>Inicio</span></a>
+                        </li>
+                        <li class="nav-item"><a href="#sintomas" class="nav-link text-dark"><span>Sintomas</span></a>
+                        </li>
+                        <li class="nav-item"><a href="#prevencion"
+                                class="nav-link text-dark"><span>Prevención</span></a>
+                        </li>
+                    </ul>
+                    <p class="text-dark">© 2020. Todos los derechos reservados DEVOP</p>
+                </div>
+            </div>
+        </div>
 
+    </footer>
 
 
 
@@ -94,38 +161,12 @@
     <script src="js/google-map.js?v=2"></script>
 
     <script src="js/Chart.min.js"></script>
-
-    <script type="module">
-        // import data from './data.js'
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 
 
-
-        function totalCasesChart(ctx) {
-            // Creamos la grafica
-            // new mandamos el contexto de donde se dibujara el chart y luego la configuracion
-            const chart = new Chart(ctx, {
-                // El tipo de grafica
-                type: 'line',
-                // data.. informacion que pondremos en el nivel X y Y
-                data: {
-                    // eje X labels
-                    labels: [1, 20, 50, 60]
-
-                }
-            })
-        }
-
-        function renderCharts() {
-            const ctx = document.querySelector('#chart').getContext('2d')
-            totalCasesChart(ctx)
-        }
-
-        renderCharts()
-
-    </script>
+    <script src="js/graficas.js"></script>
 
     <script src="js/main.js"></script>
-    <script src="js/tablaCovid.js"></script>
     <script src="js/index.js?v=3"></script>
 
 
