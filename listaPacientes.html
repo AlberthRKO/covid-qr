@@ -181,18 +181,27 @@
 
                             <!-- clase table de bootstrap que le da el estilo -->
                             <!-- table-striped hace que se intercalen los bgs de la tabla -->
-                            <div class="table-responsive">
+                            <div class="table-responsive filterable">
 
                                 <table class="table text-center estiloTabla">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>C.I.</th>
-                                            <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            <th>Origen</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
+                                        <tr class="bg-primary">
+                                        <th>PACIENTES</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><button type="button" class="btn btn-light btn-filter"><i class="icon-filter"></i> FILTRAR</button></th>
+                                        </tr>
+                                        <tr class="filters">
+                                            <th><input type="text" class="form-control d-none" placeholder="ID" disabled><label class="label">ID</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="C.I." disabled><label class="label">C.I.</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Nombres" disabled><label class="label">Nombres</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Apellidos" disabled><label class="label">Apellidos</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Origen" disabled><label class="label">Origen</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Estado" disabled><label class="label">Estado</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Acciones" disabled><label class="label">Acciones</label></th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabla">
