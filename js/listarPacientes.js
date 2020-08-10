@@ -1,22 +1,22 @@
 var usuarios = new Array();
 var actualIdUsuario;
-$(document).ready(function (){
+$(document).ready(function () {
     comprobarAdmin();
     getTodosUsuarios();
     listarUsuarios();
 });
 
-function comprobarAdmin(){
-    if(sessionStorage.usuario){
+function comprobarAdmin() {
+    if (sessionStorage.usuario) {
         usuario = JSON.parse(sessionStorage.usuario);
         usuario = JSON.parse(usuario);
-        if(usuario.rol == "1")
+        if (usuario.rol == "1")
             window.location.href = "index.html";
     }
 }
 
-function getTodosUsuarios(){
-    url="php/controlador/ControladorUsuario.php";
+function getTodosUsuarios() {
+    url = "php/controlador/ControladorUsuario.php";
     data = {
         'request': 'getTodosUsuarios'
     };
@@ -25,18 +25,18 @@ function getTodosUsuarios(){
         type: "POST",
         async: false,
         data: data,
-        success: function(result){
-            if(result.trim() != "empty")
+        success: function (result) {
+            if (result.trim() != "empty")
                 usuarios = JSON.parse(result.trim());
         }
     });
 }
 
-function listarUsuarios(){
+function listarUsuarios() {
     usuarios.forEach(usuario => {
         let idUsuario = usuario.idUsuario;
-        let ci = usuario.ci.substr(0,usuario.ci.length-3);
-        let extension = usuario.ci.substr(usuario.ci.length-3,usuario.ci.length);
+        let ci = usuario.ci.substr(0, usuario.ci.length - 3);
+        let extension = usuario.ci.substr(usuario.ci.length - 3, usuario.ci.length);
         let spanEstado = "";
         spanEstado = getEtiquetaEstado(usuario);
         let html = `<tr id="fila${idUsuario}">
@@ -62,14 +62,14 @@ function listarUsuarios(){
     });
 }
 
-function mostrarEditarUsuarioModal(idUsuario){
+function mostrarEditarUsuarioModal(idUsuario) {
     actualIdUsuario = idUsuario;
     let nombres = $('#nombres' + idUsuario).html();
     let apellidos = $('#apellidos' + idUsuario).html();
     let ci = $('#ci' + idUsuario).html();
-    let extension = $('#extension'+idUsuario).html();
-    let estado = $("#estado"+idUsuario).html();
-    
+    let extension = $('#extension' + idUsuario).html();
+    let estado = $("#estado" + idUsuario).html();
+
     $('#nombres').val(nombres);
     $('#apellidos').val(apellidos);
     $('#ci').val(ci);
@@ -79,30 +79,30 @@ function mostrarEditarUsuarioModal(idUsuario){
     $('#editar').modal("show");
 }
 
-$('#btnGuardar').click(function(){
-    if(hayError())
+$('#btnGuardar').click(function () {
+    if (hayError())
         return;
     editar();
 });
 
-function hayError(){
+function hayError() {
     let errorCi1 = validarCi();
     let errorCi2 = validarCiExistente();
     let errorApellidos = validarApellidos();
     let errorNombres = validarNombres();
-    if(errorNombres || errorApellidos || errorCi1 || errorCi2)
+    if (errorNombres || errorApellidos || errorCi1 || errorCi2)
         return true;
     return false;
 }
 
-function validarNombres(){
+function validarNombres() {
     let nombres = $('#nombres').val();
-    if(nombres.trim() != ""){
+    if (nombres.trim() != "") {
         $('#alertaNombres').removeClass("alert alert-danger");
         $('#alertaNombresMensaje').fadeOut();
         return false;
     }
-    else{
+    else {
         $('#alertaNombres').addClass("alert alert-danger");
         $('#alertaNombresMensaje').fadeIn();
         $('#nombres').focus();
@@ -110,14 +110,14 @@ function validarNombres(){
     }
 }
 
-function validarApellidos(){
+function validarApellidos() {
     let apellidos = $('#apellidos').val();
-    if(apellidos.trim() != ""){
+    if (apellidos.trim() != "") {
         $('#alertaApellidos').removeClass("alert alert-danger");
         $('#alertaApellidosMensaje').fadeOut();
         return false;
     }
-    else{
+    else {
         $('#alertaApellidos').addClass("alert alert-danger");
         $('#alertaApellidosMensaje').fadeIn();
         $('#apellidos').focus();
@@ -125,14 +125,14 @@ function validarApellidos(){
     }
 }
 
-function validarCi(){
+function validarCi() {
     let ci = $('#ci').val();
-    if(ci.trim() != ""){
+    if (ci.trim() != "") {
         $('#alertaCi').removeClass("alert alert-danger");
         $('#alertaCiMensaje1').fadeOut();
         return false;
     }
-    else{
+    else {
         $('#alertaCi').addClass("alert alert-danger");
         $('#alertaCiMensaje1').fadeIn();
         $('#ci').focus();
@@ -140,17 +140,17 @@ function validarCi(){
     }
 }
 
-function validarCiExistente(){
-    if($('#ci').val().trim() == "")
+function validarCiExistente() {
+    if ($('#ci').val().trim() == "")
         return false;
     let ci = $('#ci').val().trim();
     let exists = checkUsuario(ci);
-    if(!exists){
+    if (!exists) {
         $('#alertaCi').removeClass("alert alert-danger");
         $('#alertaCiMensaje2').fadeOut();
         return false;
     }
-    else{
+    else {
         $('#alertaCi').addClass("alert alert-danger");
         $('#alertaCiMensaje2').fadeIn();
         $('#ci').focus();
@@ -158,9 +158,9 @@ function validarCiExistente(){
     }
 }
 
-function checkUsuario(ci){
+function checkUsuario(ci) {
     let exists = false;
-    url="php/controlador/ControladorUsuario.php";
+    url = "php/controlador/ControladorUsuario.php";
     data = {
         'request': 'getByCi',
         'ci': ci
@@ -170,10 +170,10 @@ function checkUsuario(ci){
         type: "POST",
         async: false,
         data: data,
-        success : result => {
-            if(result != "empty"){
+        success: result => {
+            if (result != "empty") {
                 let usuario = JSON.parse(result);
-                if(usuario.idUsuario != actualIdUsuario)
+                if (usuario.idUsuario != actualIdUsuario)
                     exists = true;
             }
         }
@@ -181,20 +181,20 @@ function checkUsuario(ci){
     return exists;
 }
 
-function editar(){
+function editar() {
     let nombres = $('#nombres').val();
     let apellidos = $('#apellidos').val();
     let ci = $('#ci').val();
     let extension = $('#extension').val();
     let estado = $('#estado').val();
 
-    let url="php/controlador/ControladorUsuario.php";
+    let url = "php/controlador/ControladorUsuario.php";
     data = {
         request: 'editar',
         idUsuario: actualIdUsuario,
         nombres: nombres,
         apellidos: apellidos,
-        ci: ci+extension,
+        ci: ci + extension,
         estado: estado
     };
     $.ajax({
@@ -202,13 +202,13 @@ function editar(){
         type: "POST",
         async: false,
         data: data,
-        success: function(result){
+        success: function (result) {
             console.log(result);
         }
     });
     $('#btnCancelar').click();
     let usuario = {
-        idUsuario:actualIdUsuario,
+        idUsuario: actualIdUsuario,
         ci: ci,
         extension: extension,
         nombres: nombres,
@@ -218,7 +218,7 @@ function editar(){
     editarFila(usuario);
 }
 
-function editarFila(usuario){
+function editarFila(usuario) {
     let idUsuario = usuario.idUsuario;
     $('#nombres' + idUsuario).html(usuario.nombres);
     $('#ci' + idUsuario).html(usuario.ci);
@@ -230,7 +230,7 @@ function editarFila(usuario){
 }
 
 
-function mostrarEliminarUsuarioModal(idUsuario){
+function mostrarEliminarUsuarioModal(idUsuario) {
     actualIdUsuario = idUsuario;
     let nombres = $('#nombres' + idUsuario).html();
     let apellidos = $('#apellidos' + idUsuario).html();
@@ -259,23 +259,23 @@ $('#btnEliminar').click(function () {
 });
 
 
-function getEtiquetaEstado(usuario){
+function getEtiquetaEstado(usuario) {
     let estadoHtml;
 
-    if(usuario.estado == "NORMAL")
+    if (usuario.estado == "NORMAL")
         estadoHtml = `<span class="badge badge-light" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
-    if(usuario.estado == "CONFIRMADO")
+    if (usuario.estado == "CONFIRMADO")
         estadoHtml = `<span class="badge badge-primary" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
-    if(usuario.estado == "RECUPERADO")
+    if (usuario.estado == "RECUPERADO")
         estadoHtml = `<span class="badge badge-success" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
-    if(usuario.estado == "FALLECIDO")
+    if (usuario.estado == "FALLECIDO")
         estadoHtml = `<span class="badge badge-danger" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
 
     return estadoHtml;
 }
 
-$('.filterable .btn-filter').click(function(){
-    console.log("S");
+$('.filterable .btn-filter').click(function () {
+    // console.log("S");
     var $panel = $(this).parents('.filterable');
     $filters = $panel.find('.filters input');
     $labels = $panel.find('.filters .label');
@@ -284,19 +284,24 @@ $('.filterable .btn-filter').click(function(){
         $filters.removeClass("d-none");
         $filters.prop('disabled', false);
         $labels.addClass("d-none");
-        $('.filterable .btn-filter').html('<i class="icon-error"></i> CANCELAR');
+        $('.filterable .btn-filter').html('<i class="icon-error"></i> Cancelar');
+        $('.filterable .btn-filter').addClass('btn-secondary');
+        $('.filterable .filters .ultimaTabla').addClass('pt-2');
         $filters.first().focus();
     } else {
         $filters.addClass("d-none");
+        $('.filterable .btn-filter').removeClass('btn-secondary');
+        $('.filterable .filters .ultimaTabla').removeClass('pt-2');
         $filters.val('').prop('disabled', true);
         $labels.removeClass("d-none");
         $tbody.find('.no-result').remove();
-        $('.filterable .btn-filter').html('<i class="icon-filter"></i> FILTRAR');
+        $('.filterable .btn-filter').html('<i class="icon-filter"></i> Filtrar');
+        $('.filterable .btn-filter').addClass('btn-primary');
         $tbody.find('tr').show();
     }
 });
 
-$('.filterable .filters input').keyup(function(e){
+$('.filterable .filters input').keyup(function (e) {
     /* Ignorar tecla de tabulación */
     var code = e.keyCode || e.which;
     if (code == '9') return;
@@ -308,7 +313,7 @@ $('.filterable .filters input').keyup(function(e){
     $table = $panel.find('.table');
     $rows = $table.find('tbody tr');
     /* La función de filtro ;) */
-    var $filteredRows = $rows.filter(function(){
+    var $filteredRows = $rows.filter(function () {
         var value = $(this).find('td').eq(column).text().toLowerCase();
         return value.indexOf(inputContent) === -1;
     });
@@ -319,6 +324,6 @@ $('.filterable .filters input').keyup(function(e){
     $filteredRows.hide();
     /* Anteponer una fila sin resultado si todas las filas están filtradas */
     if ($filteredRows.length === $rows.length) {
-        $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+        $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
     }
 });
