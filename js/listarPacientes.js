@@ -1,4 +1,5 @@
 var usuarios = new Array();
+var usuariosConfirmados = new Array();
 var actualIdUsuario;
 var estados = new Array();
 var ubicaciones = new Array();
@@ -19,15 +20,15 @@ function llenarEstados(){
 }
 
 $('#listarPuntosInfeccion').click(function(){
-    getTodasUbicaciones();
-    dibujarInfeccion(ubicaciones, true);
+    getTodosUsuariosConfirmados();
+    dibujarInfeccion(usuariosConfirmados);
     $('#mapa').modal("show");
 });
 
-function getTodasUbicaciones() {
-    url = "php/controlador/ControladorUbicacion.php";
+function getTodosUsuariosConfirmados() {
+    url = "php/controlador/ControladorUsuario.php";
     data = {
-        'request': 'getTodasUbicaciones'
+        'request': 'getTodosUsuariosConfirmados'
     };
     $.ajax({
         url: url,
@@ -36,7 +37,7 @@ function getTodasUbicaciones() {
         data: data,
         success: function (result) {
             if (result.trim() != "empty")
-                ubicaciones = JSON.parse(result.trim());
+                usuariosConfirmados = JSON.parse(result.trim());
         }
     });
 }

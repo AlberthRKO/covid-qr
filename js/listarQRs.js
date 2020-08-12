@@ -1,4 +1,6 @@
 var ubicaciones = new Array();
+var usuarios = new Array();
+var usuariosConfirmados = new Array();
 var actualIdUbicacion;
 var usuario;
 $(document).ready(function () {
@@ -44,6 +46,8 @@ function getTodasUbicaciones() {
 }
 
 function listarUbicaciones() {
+    getTodosUsuariosConfirmados();
+    
     ubicaciones.forEach(ubicacion => {
         let html = `<tr id="fila${ubicacion.idUbicacion}">
                         <td>${ubicacion.idUbicacion}</td>
@@ -53,8 +57,9 @@ function listarUbicaciones() {
                         <td>
                     `;
 
+        getTodosUsuariosQRConfirmados(ubicacion.idUbicacion);
+        ubicacion.gravedad = getGravedad(ubicacion);
         html += getColorRiesgo(ubicacion);
-
         html += `${ubicacion.gravedad}</span>
                         </td>
                         <td>
@@ -73,6 +78,75 @@ function listarUbicaciones() {
                         </td>
                     </tr>`;
         $('#tabla').append(html);
+    });
+}
+
+function getTodosUsuariosConfirmados() {
+    url = "php/controlador/ControladorUsuario.php";
+    data = {
+        'request': 'getTodosUsuariosConfirmados'
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                usuarios = JSON.parse(result.trim());
+        }
+    });
+}
+
+function getGravedad(ubicacion){
+    let casos = 0;
+    let gravedad = "";
+    casosCercanos = getCasosCercanos(ubicacion);//Funcion que determina cuantos enfermos hay a 110 mts de distancia del punto qr
+    casosCercanosQR = getCasosLeidosQR();//Funcion que determina cuantos enfermos pasaron por el lugar durante el dia
+    casos = casosCercanos + casosCercanosQR;
+    //console.log(`${ubicacion.idUbicacion} ${ubicacion.nombre} | ${casosCercanos} + ${casosCercanosQR} = ${casos}`)
+    if(casos <= 5)
+        gravedad = "BAJO";
+    else{
+        if(casos <= 10)
+            gravedad = "MEDIO";
+        else
+            gravedad = "ALTO";
+    }
+    return gravedad;
+}
+
+function getCasosCercanos(ubicacion){
+    casos = 0;
+    usuarios.forEach(usuario => {
+        distancia = distanceBetween(ubicacion, usuario);
+        if(distancia < 110)
+            casos++;
+    });
+    return casos;
+}
+
+function getCasosLeidosQR(){
+    return usuariosConfirmados.length;
+}
+
+function getTodosUsuariosQRConfirmados(idUbicacion){
+    let url = "php/controlador/ControladorUbicacionUsuario.php";
+    data = {
+        request: 'getTodosUsuariosQRConfirmados',
+        idUbicacion: idUbicacion
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                usuariosConfirmados = JSON.parse(result.trim());
+            else
+                usuariosConfirmados = new Array();
+        }
     });
 }
 
@@ -159,7 +233,6 @@ $('#btnGuardar').click(function () {
         return;
     editar();
     $('#btnCancelar').click();
-    editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
 });
 
 function hayError(){
@@ -218,6 +291,7 @@ function editar(){
         async: false,
         data: data
     });
+    editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
 }
 
 function editarFila(idUbicacion, nombre, ejeX, ejeY) {

@@ -167,5 +167,34 @@
                 exit('Error al realizar la consulta: '.$query->close());
         }
         
+        public static function getTodosUsuariosConfirmados(){
+            include('../connection.php');
+            $query = $db->prepare("SELECT * FROM usuarios WHERE ACTIVO='1' AND ESTADO='CONFIRMADO'");
+
+            $usuarios = array();
+            //Ejecutamos la consulta
+            if($query->execute()){
+                //Alamacenaos los datos de la consulta
+                $query->store_result();
+                
+                if($query->num_rows == 0)
+                    return null;
+                
+                //Indicamos la variable donde se guardaran los resultados
+                $query->bind_result($idUsuario,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,$activo);
+                
+                //listamos todos los resultados
+                while($query->fetch()){
+                    $usuarioActual = new Usuario($idUsuario,$ci,$nombres,$apellidos,$telefono,$correo,$contrasena,$rol,$estado,$ejeX,$ejeY,$activo);
+                    array_push($usuarios,$usuarioActual);
+                }
+                //Cerramos la conexion
+                $query->close();
+                return $usuarios;
+                
+            } else
+                exit('Error al realizar la consulta: '.$query->close());
+        }
+
     }
 ?>
