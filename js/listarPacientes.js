@@ -1,6 +1,7 @@
 var usuarios = new Array();
 var actualIdUsuario;
 var estados = new Array();
+var ubicaciones = new Array();
 
 $(document).ready(function () {
     llenarEstados();
@@ -15,6 +16,29 @@ function llenarEstados(){
     estados[2] = '<option disabled value="CONFIRMADO">Confirmado</option>'
     estados[3] = '<option disabled value="RECUPERADO">Recuperado</option>'
     estados[4] = '<option disabled value="FALLECIDO">Fallecido</option>'
+}
+
+$('#listarPuntosInfeccion').click(function(){
+    getTodasUbicaciones();
+    dibujarInfeccion(ubicaciones, true);
+    $('#mapa').modal("show");
+});
+
+function getTodasUbicaciones() {
+    url = "php/controlador/ControladorUbicacion.php";
+    data = {
+        'request': 'getTodasUbicaciones'
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                ubicaciones = JSON.parse(result.trim());
+        }
+    });
 }
 
 function comprobarAdmin() {
