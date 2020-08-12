@@ -1,4 +1,5 @@
 var usuarios = new Array();
+var usuariosConfirmados = new Array();
 var actualIdUsuario;
 var estados = new Array();
 var ubicaciones = new Array();
@@ -18,16 +19,22 @@ function llenarEstados() {
     estados[4] = '<option disabled value="FALLECIDO">Fallecido</option>'
 }
 
+<<<<<<< HEAD
 $('#listarPuntosInfeccion').click(function () {
     getTodasUbicaciones();
     dibujarInfeccion(ubicaciones, true);
+=======
+$('#listarPuntosInfeccion').click(function(){
+    getTodosUsuariosConfirmados();
+    dibujarInfeccion(usuariosConfirmados);
+>>>>>>> 6285a1a0419a1343a9eeceb0d06e948485636f91
     $('#mapa').modal("show");
 });
 
-function getTodasUbicaciones() {
-    url = "php/controlador/ControladorUbicacion.php";
+function getTodosUsuariosConfirmados() {
+    url = "php/controlador/ControladorUsuario.php";
     data = {
-        'request': 'getTodasUbicaciones'
+        'request': 'getTodosUsuariosConfirmados'
     };
     $.ajax({
         url: url,
@@ -36,7 +43,7 @@ function getTodasUbicaciones() {
         data: data,
         success: function (result) {
             if (result.trim() != "empty")
-                ubicaciones = JSON.parse(result.trim());
+                usuariosConfirmados = JSON.parse(result.trim());
         }
     });
 }

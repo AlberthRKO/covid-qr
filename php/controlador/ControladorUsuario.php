@@ -53,5 +53,12 @@
       else
         echo "empty";
     break;
+    case "getTodosUsuariosConfirmados":
+      $usuarios = Usuario::getTodosUsuariosConfirmados();
+      if($usuarios != null)
+        echo json_encode($usuarios);
+      else
+        echo "empty";
+    break;
   }
 ?>

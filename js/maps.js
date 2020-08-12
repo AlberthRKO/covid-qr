@@ -95,12 +95,12 @@ const dibujarMapa = (ubicaciones, sinMarker) => {
     });
 };
 
-const dibujarInfeccion = (ubicaciones, sinMarker) => {
+const dibujarInfeccion = (usuarios) => {
     let mapa = new google.maps.Map(document.getElementById('map'),{
         center: {lat: -19.044654, lng: -65.260850},
         zoom: 14,
     });
-    ubicaciones.forEach(ubicacion => {
+    usuarios.forEach(usuario => {
         new google.maps.Circle({
             strokeColor: "#FF0000",
             strokeOpacity: 0.8,
@@ -108,28 +108,9 @@ const dibujarInfeccion = (ubicaciones, sinMarker) => {
             fillColor: "#FF0000",
             fillOpacity: 0.35,
             map: mapa,
-            center: {lat: parseFloat(ubicacion.ejeX), lng: parseFloat(ubicacion.ejeY)},
-            radius: 100
+            center: {lat: parseFloat(usuario.ejeX), lng: parseFloat(usuario.ejeY)},
+            radius: 55
         });
-    });
-
-    if(sinMarker)
-    return;
-
-    marker = new google.maps.Marker({
-        map: mapa,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        position: {lat: -19.044654, lng: -65.260850},
-    });
-    //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
-    //cuando el usuario a soltado el marcador
-    // marker.addListener('click', toggleBounce);
-
-    marker.addListener('dragend', function (event) {
-        //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
-        document.getElementById("ejeY").value = this.getPosition().lng();
-        document.getElementById("ejeX").value = this.getPosition().lat();
     });
 };
 
@@ -243,3 +224,35 @@ function toggleBounce() {
         marker.setAnimation(google.maps.Animation.BOUNCE);
     }
 } */
+
+const toRadians = (val) => {
+    return val * Math.PI / 180;
+}
+const toDegrees = (val) => {
+    return val * 180 / Math.PI;
+}
+// Calculate a point winthin a circle
+// circle ={center:LatLong, radius: number} // in metres
+const pointInsideCircle = (point, circle) => {
+    let center = circle.center;
+    let distance = distanceBetween(point, center);
+
+    //alert(distance);
+    return distance < circle.radius;
+};
+
+const distanceBetween = (point1, point2) => {
+   //debugger;
+   var R = 6371e3; // metres
+   var φ1 = toRadians(point1.ejeX);//lati
+   var φ2 = toRadians(point2.ejeX);//lati
+   var Δφ = toRadians(point2.ejeX - point1.ejeX);//latis
+   var Δλ = toRadians(point2.ejeY - point1.ejeY);//longis
+
+   var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+           Math.cos(φ1) * Math.cos(φ2) *
+           Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+   return R * c;
+}
