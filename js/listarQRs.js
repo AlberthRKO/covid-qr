@@ -8,7 +8,8 @@ $(document).ready(function () {
 });
 
 $('#listarPuntos').click(function () {
-    dibujarMapa(ubicaciones);
+    getTodasUbicaciones();
+    dibujarMapa(ubicaciones, true);
     $('#mapa').modal("show");
 });
 
@@ -145,16 +146,20 @@ $('#btnUbicacion').click(function () {
     ejeX = $('#ejeX').val();
     ejeY = $('#ejeY').val();
     ubicacion = {
+        idUbicacion: actualIdUbicacion,
         ejeX: ejeX,
         ejeY: ejeY
     }
-    editMap(ubicacion);
+    getTodasUbicaciones();
+    editMap(ubicacion, ubicaciones);
 });
 
 $('#btnGuardar').click(function () {
     if(hayError())
         return;
     editar();
+    $('#btnCancelar').click();
+    editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
 });
 
 function hayError(){
@@ -213,8 +218,6 @@ function editar(){
         async: false,
         data: data
     });
-    $('#btnCancelar').click();
-    editarFila(actualIdUbicacion, nombre, ejeX, ejeY);
 }
 
 function editarFila(idUbicacion, nombre, ejeX, ejeY) {

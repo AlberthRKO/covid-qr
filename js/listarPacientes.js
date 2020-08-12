@@ -1,10 +1,21 @@
 var usuarios = new Array();
 var actualIdUsuario;
+var estados = new Array();
+
 $(document).ready(function () {
+    llenarEstados();
     comprobarAdmin();
     getTodosUsuarios();
     listarUsuarios();
 });
+
+function llenarEstados(){
+    estados[0] = '<option disabled selected>Estado</option>';
+    estados[1] = '<option disabled value="NORMAL">Normal</option>'
+    estados[2] = '<option disabled value="CONFIRMADO">Confirmado</option>'
+    estados[3] = '<option disabled value="RECUPERADO">Recuperado</option>'
+    estados[4] = '<option disabled value="FALLECIDO">Fallecido</option>'
+}
 
 function comprobarAdmin() {
     if (sessionStorage.usuario) {
@@ -74,9 +85,25 @@ function mostrarEditarUsuarioModal(idUsuario) {
     $('#apellidos').val(apellidos);
     $('#ci').val(ci);
     $('#extension').val(extension);
-    $("#estado").val(estado);
 
+    llenarSelect(estado);
     $('#editar').modal("show");
+}
+
+function llenarSelect(estado){
+    if(estado == "NORMAL")
+        $('#estado').html(estados[0] + estados[1] + sinDisabled(estados[2]));
+    if(estado == "CONFIRMADO")
+        $('#estado').html(estados[0] + estados[2] + sinDisabled(estados[3]) + sinDisabled(estados[4]));
+    if(estado == "RECUPERADO")
+        $('#estado').html(estados[0] + estados[3]);
+    if(estado == "FALLECIDO")
+        $('#estado').html(estados[0] + estados[4]);
+    $("#estado").val(estado);
+}
+
+function sinDisabled(estado){
+    return estado.substr(0,8) + estado.substr(17,estado.length);
 }
 
 $('#btnGuardar').click(function () {

@@ -1,5 +1,4 @@
-var errorNombre;
-var errorEjes;
+var ubicaciones = new Array();
 
 $(document).ready(function (){
     comprobarAdmin();
@@ -14,7 +13,6 @@ function comprobarAdmin(){
     }
 }
 
-
 $('#btnRegistrar').click(function (e){
     e.preventDefault();
     if(hayError())
@@ -22,12 +20,9 @@ $('#btnRegistrar').click(function (e){
     insertar();
 });
 
-
-
-
 function hayError(){    
-    errorEjes = validarEjes();
-    errorNombre = validarNombre();
+    let errorEjes = validarEjes();
+    let errorNombre = validarNombre();
     if(errorNombre || errorEjes)
         return true;
     return false;
@@ -96,6 +91,24 @@ function limpiar(){
     $('#ejeY').val("");
 }
 
+function getTodasUbicaciones() {
+    url = "php/controlador/ControladorUbicacion.php";
+    data = {
+        'request': 'getTodasUbicaciones'
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                ubicaciones = JSON.parse(result.trim());
+        }
+    });
+}
+
 $('#btnUbicacion').click(function(){
-    initMap();
+    getTodasUbicaciones();
+    dibujarMapa(ubicaciones, false);
 });

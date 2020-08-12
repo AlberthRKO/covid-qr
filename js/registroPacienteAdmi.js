@@ -7,7 +7,6 @@ var errorUbicacion;
 
 $('#btnRegistrar').click(function (e){
     e.preventDefault();
-    console.log("Click");
     if(hayError())
         return;
     insertar();
@@ -31,7 +30,6 @@ function limpiar(){
 }
 
 function hayError(){
-    console.log("validando");
     errorUbicacion = validarUbicacion();
     errorContrasena = validarContrasena();
     errorCi1 = validarCi();
@@ -89,10 +87,11 @@ function validarCi(){
 }
 
 function validarUbicacion(){
-    let latitud = $('#ejeX').val();
-    if(latitud != ""){
+    let latitud = $('#ejeX').val().trim();
+    let longitud = $('#ejeY').val().trim();
+    if(latitud != "" && longitud != ""){
         $('#alertaUbicacion').removeClass("alert alert-danger");
-        $('#alertaUbicacionMensaje1').fadeOut();
+        $('#alertaUbicacionMensaje').fadeOut();
         return false;
     }
     else{
