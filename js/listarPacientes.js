@@ -10,7 +10,7 @@ $(document).ready(function () {
     listarUsuarios();
 });
 
-function llenarEstados(){
+function llenarEstados() {
     estados[0] = '<option disabled selected>Estado</option>';
     estados[1] = '<option disabled value="NORMAL">Normal</option>'
     estados[2] = '<option disabled value="CONFIRMADO">Confirmado</option>'
@@ -18,7 +18,7 @@ function llenarEstados(){
     estados[4] = '<option disabled value="FALLECIDO">Fallecido</option>'
 }
 
-$('#listarPuntosInfeccion').click(function(){
+$('#listarPuntosInfeccion').click(function () {
     getTodasUbicaciones();
     dibujarInfeccion(ubicaciones, true);
     $('#mapa').modal("show");
@@ -114,20 +114,20 @@ function mostrarEditarUsuarioModal(idUsuario) {
     $('#editar').modal("show");
 }
 
-function llenarSelect(estado){
-    if(estado == "NORMAL")
+function llenarSelect(estado) {
+    if (estado == "NORMAL")
         $('#estado').html(estados[0] + estados[1] + sinDisabled(estados[2]));
-    if(estado == "CONFIRMADO")
+    if (estado == "CONFIRMADO")
         $('#estado').html(estados[0] + estados[2] + sinDisabled(estados[3]) + sinDisabled(estados[4]));
-    if(estado == "RECUPERADO")
+    if (estado == "RECUPERADO")
         $('#estado').html(estados[0] + estados[3]);
-    if(estado == "FALLECIDO")
+    if (estado == "FALLECIDO")
         $('#estado').html(estados[0] + estados[4]);
     $("#estado").val(estado);
 }
 
-function sinDisabled(estado){
-    return estado.substr(0,8) + estado.substr(17,estado.length);
+function sinDisabled(estado) {
+    return estado.substr(0, 8) + estado.substr(17, estado.length);
 }
 
 $('#btnGuardar').click(function () {
@@ -378,3 +378,11 @@ $('.filterable .filters input').keyup(function (e) {
         $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
     }
 });
+
+
+
+const estadito = document.querySelector('#estado')
+
+estadito.addEventListener("change", () => {
+    $('#selectHospital').addClass('d-block')
+})
