@@ -19,15 +19,9 @@ function llenarEstados() {
     estados[4] = '<option disabled value="FALLECIDO">Fallecido</option>'
 }
 
-<<<<<<< HEAD
 $('#listarPuntosInfeccion').click(function () {
     getTodasUbicaciones();
     dibujarInfeccion(ubicaciones, true);
-=======
-$('#listarPuntosInfeccion').click(function(){
-    getTodosUsuariosConfirmados();
-    dibujarInfeccion(usuariosConfirmados);
->>>>>>> 6285a1a0419a1343a9eeceb0d06e948485636f91
     $('#mapa').modal("show");
 });
 
