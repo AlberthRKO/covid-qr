@@ -1,5 +1,26 @@
 .ftco-navbar-light {
-    background: transparent !important;
+    top: 0px;
+    background: white !important;
+    box-shadow: 0px 0px 15px #000 !important;
+}
+
+@media (max-width: 991.98px) {
+    .ftco-navbar-light .estilo-logo {
+        color: white !important;
+    }
+
+    .ftco-navbar-light.scrolled .cambio-logo {
+        color: black !important;
+    }
+
+    .ftco-navbar-light .nav-item>.nav-link {
+        color: white !important;
+    }
+
+    .ftco-navbar-light.scrolled .nav-item>.nav-link {
+        color: black !important;
+    }
+
 }
 
 .ftco-navbar-black {
@@ -8,7 +29,7 @@
 }
 
 .estilo-logo {
-    color: white !important;
+    color: black !important;
 }
 
 .cambio-logo {

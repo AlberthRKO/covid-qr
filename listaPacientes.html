@@ -310,7 +310,7 @@
                                     </div>
                                     <input type="text" class="form-control inputsito" name="ci" id="ci"
                                         placeholder="CI">
-                                    <select name="extension" id="extension">
+                                    <select class="inputsito" name="extension" id="extension">
                                         <option value="CH.">CH.</option>
                                         <option value="TJ.">TJ.</option>
                                         <option value="PD.">PD.</option>
@@ -410,6 +410,30 @@
                 <div class="modal-footer d-flex justify-content-around">
                     <a href="login.html" type="button" class="btn btn-primary">Cerrar Sesión</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="mapaPacientes">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Contenido del modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-uppercase">Zonas de Infección en el Mapa</h4>
+                    <!-- data-dismis cierra el modal  -->
+                    <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- contenido -->
+                <div class="modal-body">
+                    <div id="mapPacientes"></div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
 
 

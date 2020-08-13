@@ -276,7 +276,7 @@ function editarFila(usuario) {
     $('#ci' + idUsuario).html(usuario.ci);
     $('#extension' + idUsuario).html(usuario.extension);
     $('#apellidos' + idUsuario).html(usuario.apellidos);
-    if(usuario.estado != "" && usuario.estado != undefined){
+    if (usuario.estado != "" && usuario.estado != undefined) {
         let etiquetaEstado = getEtiquetaEstado(usuario);
         $('#filaEstado' + idUsuario).html(etiquetaEstado);
     }

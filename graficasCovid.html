@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
 
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/feather/style.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -24,20 +25,20 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/misEstilos.css">
+    <link rel="stylesheet" href="css/misEstilos2.css">
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body data-spy="scroll" data-target=".site-navbar-target">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-black site-navbar-target fixed-top"
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target scrolled awake"
         id="ftco-navbar">
         <div class="container">
             <a href="#" class="text-decoration-none">
                 <img src="images/logaso.png" alt="logo del sitio" width="80" class="img-fluid">
-                <span class="h4 align-middle font-weight-bold text-dark "
-                    style="font-family: 'Kaushan Script',cursive; ">COVID-QR</span>
+                <span class="h4 align-middle text-primary font-weight-bold text-white estilo-logo"
+                    style="font-family: 'Kaushan Script',cursive;">COVID-QR</span>
             </a>
             <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
                 data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,13 +52,17 @@
                     <li class="nav-item"><a href="#about-section" class="nav-link text-dark"><span>Acerca de</span></a>
                     </li>
                     <li class="nav-item"><a href="#casos" class="nav-link text-dark"><span>Estado Covid</span></a></li>
-                    <li class="nav-item"><a href="#doctor-section" class="nav-link text-dark"><span>Sintomas</span></a>
+                    <li class="nav-item"><a href="#sintomas" class="nav-link text-dark"><span>Sintomas</span></a>
                     </li>
-                    <li class="nav-item"><a href="#blog-section" class="nav-link text-dark"><span>Prevencion</span></a>
+                    <li class="nav-item"><a href="#prevencion" class="nav-link text-dark"><span>Prevencion</span></a>
                     </li>
                     <li class="nav-item"><a href="#app" class="nav-link text-dark"><span>Uso App</span></a>
                     </li>
-                    <li class="nav-item cta2" style="margin-top: 2px;"><a href="admin.html"
+                    <li class="nav-item"><a data-toggle="modal" data-target="#logout" class="nav-link text-dark"
+                            style="cursor: pointer;"><i class="ft-log-out"></i></a>
+                    </li>
+                    <!-- id="btn" -->
+                    <li class="nav-item cta" style="margin-top: 2px;"><a href="admin.html"
                             class="nav-link font-weight-bold" id="btn">Iniciar
                             Sesión</a></li>
                 </ul>
@@ -65,7 +70,7 @@
         </div>
     </nav>
 
-    <div class="pt-5"></div>
+    <div class="pt-3 pt-lg-5"></div>
 
     <section class="pb-3 pt-5" data-aos="zoom-in-up" data-aos-duration="1500">
         <div class="container">
@@ -140,6 +145,30 @@
         </div>
 
     </footer>
+
+
+    <div class="modal fade" id="logout">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Contenido del modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-uppercase">Cerrar Sesion</h4>
+                    <!-- data-dismis cierra el modal  -->
+                    <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- contenido -->
+                <div class="modal-body">
+                    <p class="text-dark">Estas seguro que desea cerrar sesión</p>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                    <a href="login.html" type="button" class="btn btn-primary">Cerrar Sesión</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 
 

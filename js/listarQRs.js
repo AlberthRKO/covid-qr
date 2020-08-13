@@ -15,7 +15,7 @@ $('#listarPuntos').click(function () {
     $('#mapa').modal("show");
 });
 
-$('#btnGuardarUbicacion').click(function(){
+$('#btnGuardarUbicacion').click(function () {
     $('#mapa').modal("hide");
 })
 
@@ -47,7 +47,7 @@ function getTodasUbicaciones() {
 
 function listarUbicaciones() {
     getTodosUsuariosConfirmados();
-    
+
     ubicaciones.forEach(ubicacion => {
         let html = `<tr id="fila${ubicacion.idUbicacion}">
                         <td>${ubicacion.idUbicacion}</td>
@@ -98,17 +98,17 @@ function getTodosUsuariosConfirmados() {
     });
 }
 
-function getGravedad(ubicacion){
+function getGravedad(ubicacion) {
     let casos = 0;
     let gravedad = "";
     casosCercanos = getCasosCercanos(ubicacion);//Funcion que determina cuantos enfermos hay a 110 mts de distancia del punto qr
     casosCercanosQR = getCasosLeidosQR();//Funcion que determina cuantos enfermos pasaron por el lugar durante el dia
     casos = casosCercanos + casosCercanosQR;
     //console.log(`${ubicacion.idUbicacion} ${ubicacion.nombre} | ${casosCercanos} + ${casosCercanosQR} = ${casos}`)
-    if(casos <= 5)
+    if (casos <= 5)
         gravedad = "BAJO";
-    else{
-        if(casos <= 10)
+    else {
+        if (casos <= 10)
             gravedad = "MEDIO";
         else
             gravedad = "ALTO";
@@ -116,21 +116,21 @@ function getGravedad(ubicacion){
     return gravedad;
 }
 
-function getCasosCercanos(ubicacion){
+function getCasosCercanos(ubicacion) {
     casos = 0;
     usuarios.forEach(usuario => {
         distancia = distanceBetween(ubicacion, usuario);
-        if(distancia < 110)
+        if (distancia < 110)
             casos++;
     });
     return casos;
 }
 
-function getCasosLeidosQR(){
+function getCasosLeidosQR() {
     return usuariosConfirmados.length;
 }
 
-function getTodosUsuariosQRConfirmados(idUbicacion){
+function getTodosUsuariosQRConfirmados(idUbicacion) {
     let url = "php/controlador/ControladorUbicacionUsuario.php";
     data = {
         request: 'getTodosUsuariosQRConfirmados',
@@ -184,6 +184,9 @@ function mostrarImprimirQRModal(idUbicacion) {
     actualIdUbicacion = idUbicacion;
     let nombre = $('#nombre' + idUbicacion).html();
     let riesgo = $('#riesgo' + idUbicacion).html();
+    let html = `Punto QR de la Zona - <span class="font-weight-bold">${nombre}</span>`;
+    $('#mensajeImpresion').html(html);
+
     let ejeX = $('#ejeX' + idUbicacion).html();
     let ejeY = $('#ejeY' + idUbicacion).html();
     $('#qr').html("");
@@ -229,28 +232,28 @@ $('#btnUbicacion').click(function () {
 });
 
 $('#btnGuardar').click(function () {
-    if(hayError())
+    if (hayError())
         return;
     editar();
     $('#btnCancelar').click();
 });
 
-function hayError(){
+function hayError() {
     errorEjes = validarEjes();
     errorNombre = validarNombre();
-    if(errorNombre || errorEjes)
+    if (errorNombre || errorEjes)
         return true;
     return false;
 }
 
-function validarNombre(){
+function validarNombre() {
     let nombre = $('#nombre').val();
-    if(nombre.trim() != ""){
+    if (nombre.trim() != "") {
         $('#alertaNombre').removeClass("alert alert-danger");
         $('#alertaNombreMensaje').fadeOut();
         return false;
     }
-    else{
+    else {
         $('#alertaNombre').addClass("alert alert-danger");
         $('#alertaNombreMensaje').fadeIn();
         $('#nombre').focus();
@@ -258,22 +261,22 @@ function validarNombre(){
     }
 }
 
-function validarEjes(){
+function validarEjes() {
     let ejeX = $('#ejeX').val();
     let ejeY = $('#ejeY').val();
-    if(ejeX.trim() != "" && ejeY.trim() != ""){
+    if (ejeX.trim() != "" && ejeY.trim() != "") {
         $('#alertaEjes').removeClass("alert alert-danger");
         $('#alertaEjesMensaje').fadeOut();
         return false;
     }
-    else{
+    else {
         $('#alertaEjes').addClass("alert alert-danger");
         $('#alertaEjesMensaje').fadeIn();
         return true;
     }
 }
 
-function editar(){
+function editar() {
     let nombre = $('#nombre').val();
     let ejeX = $('#ejeX').val();
     let ejeY = $('#ejeY').val();
