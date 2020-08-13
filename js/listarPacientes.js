@@ -20,8 +20,8 @@ function llenarEstados() {
 }
 
 $('#listarPuntosInfeccion').click(function () {
-    getTodasUbicaciones();
-    dibujarInfeccion(ubicaciones, true);
+    getTodosUsuariosConfirmados();
+    dibujarInfeccion(usuariosConfirmados, true);
     $('#mapa').modal("show");
 });
 
