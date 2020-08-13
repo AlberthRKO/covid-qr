@@ -276,8 +276,10 @@ function editarFila(usuario) {
     $('#ci' + idUsuario).html(usuario.ci);
     $('#extension' + idUsuario).html(usuario.extension);
     $('#apellidos' + idUsuario).html(usuario.apellidos);
-    let etiquetaEstado = getEtiquetaEstado(usuario);
-    $('#filaEstado' + idUsuario).html(etiquetaEstado);
+    if(usuario.estado != "" && usuario.estado != undefined){
+        let etiquetaEstado = getEtiquetaEstado(usuario);
+        $('#filaEstado' + idUsuario).html(etiquetaEstado);
+    }
     swal("Guardado", "Editado exitosamente !", "success");
 }
 

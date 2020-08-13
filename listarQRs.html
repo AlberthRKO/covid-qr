@@ -182,17 +182,29 @@
 
                             <!-- clase table de bootstrap que le da el estilo -->
                             <!-- table-striped hace que se intercalen los bgs de la tabla -->
-                            <div class="table-responsive">
+                            <div class="table-responsive filterable">
 
                                 <table class="table text-center estiloTabla">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Zona</th>
-                                            <th>Latitud</th>
-                                            <th>Longitud</th>
-                                            <th>Riesgo</th>
-                                            <th>Acciones</th>
+                                            <div class="d-flex justify-content-between align-items-center px-4 py-2">
+                                                <h4 class="font-weight-bold">QRS REGISTRADOS</h4>
+                                                <button type="button" class="btn btn-primary btn-filter"><i
+                                                        class="icon-filter"></i> Filtrar</button>
+                                            </div>
+                                        </tr>
+                                        <tr class="filters">
+                                            <th><input type="text" class="form-control d-none" placeholder="ID"
+                                                    disabled><label class="label">ID</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Zona"
+                                                    disabled><label class="label">Zona</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Latitud"
+                                                    disabled><label class="label">Latitud</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Longitud"
+                                                    disabled><label class="label">Longitud</label></th>
+                                            <th><input type="text" class="form-control d-none" placeholder="Riesgo"
+                                                    disabled><label class="label">Riesgo</label></th>
+                                            <th><label class="label">Acciones</label></th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabla">
@@ -431,7 +443,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIMYrLPS8LMwEehnMCpy9ohhFvZb01CJk"></script>
     <script src="js/jquery-qrcode.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/listarQRs.js?v=12"></script>
+    <script src="js/listarQRs.js?v=13"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="app-assets/vendors/js/sweetalert2.min.js" type="text/javascript"></script>

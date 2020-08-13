@@ -301,4 +301,55 @@ function editarFila(idUbicacion, nombre, ejeX, ejeY) {
     swal("Guardado", "Editado exitosamente !", "success");
 }
 
+$('.filterable .btn-filter').click(function () {
+    var $panel = $(this).parents('.filterable');
+    $filters = $panel.find('.filters input');
+    $labels = $panel.find('.filters .label');
+    $tbody = $panel.find('.table tbody');
+    if ($filters.prop('disabled') == true) {
+        $filters.removeClass("d-none");
+        $filters.prop('disabled', false);
+        $labels.addClass("d-none");
+        $('.filterable .btn-filter').html('<i class="icon-error"></i> Cancelar');
+        $('.filterable .btn-filter').addClass('btn-secondary');
+        $('.filterable .filters .ultimaTabla').addClass('pt-2');
+        $filters.first().focus();
+    } else {
+        $filters.addClass("d-none");
+        $('.filterable .btn-filter').removeClass('btn-secondary');
+        $('.filterable .filters .ultimaTabla').removeClass('pt-2');
+        $filters.val('').prop('disabled', true);
+        $labels.removeClass("d-none");
+        $tbody.find('.no-result').remove();
+        $('.filterable .btn-filter').html('<i class="icon-filter"></i> Filtrar');
+        $('.filterable .btn-filter').addClass('btn-primary');
+        $tbody.find('tr').show();
+    }
+});
 
+$('.filterable .filters input').keyup(function (e) {
+    /* Ignorar tecla de tabulación */
+    var code = e.keyCode || e.which;
+    if (code == '9') return;
+    /* Datos DOM y selectores útiles */
+    var $input = $(this);
+    inputContent = $input.val().toLowerCase();
+    $panel = $input.parents('.filterable');
+    column = $panel.find('.filters th').index($input.parents('th'));
+    $table = $panel.find('.table');
+    $rows = $table.find('tbody tr');
+    /* La función de filtro ;) */
+    var $filteredRows = $rows.filter(function () {
+        var value = $(this).find('td').eq(column).text().toLowerCase();
+        return value.indexOf(inputContent) === -1;
+    });
+    /* Limpie sin resultado previo si existe */
+    $table.find('tbody .no-result').remove();
+    /* Mostrar todas las filas, ocultar las filtradas ! xD) */
+    $rows.show();
+    $filteredRows.hide();
+    /* Anteponer una fila sin resultado si todas las filas están filtradas */
+    if ($filteredRows.length === $rows.length) {
+        $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
+    }
+});

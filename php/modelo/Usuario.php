@@ -47,9 +47,16 @@
 
         public static function editar($usuario){
             include('../connection.php');
-            $query = $db->prepare("UPDATE usuarios SET NOMBRES=?,APELLIDOS=?,CI=?,ESTADO=? WHERE IDUSUARIO=?");
+            if($usuario->estado != "" && $usuario->estado != null){
+                $query = $db->prepare("UPDATE usuarios SET NOMBRES=?,APELLIDOS=?,CI=?,ESTADO=? WHERE IDUSUARIO=?");
+                $query->bind_param("ssssi", $usuario->nombres, $usuario->apellidos,$usuario->ci,$usuario->estado,$usuario->idUsuario);
+            }
+            else{
+                $query = $db->prepare("UPDATE usuarios SET NOMBRES=?,APELLIDOS=?,CI=? WHERE IDUSUARIO=?");
+                $query->bind_param("sssi", $usuario->nombres, $usuario->apellidos,$usuario->ci,$usuario->idUsuario);
+            }
 
-            $query->bind_param("ssssi", $usuario->nombres, $usuario->apellidos,$usuario->ci,$usuario->estado,$usuario->idUsuario);
+            
 
             if($query->execute()){
 	            return "Datos editados correctamente";
