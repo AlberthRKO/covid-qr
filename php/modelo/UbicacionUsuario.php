@@ -28,8 +28,9 @@
                 return "OK";
                 
             } else {
+                $error = "Error al realizar la consulta: ".$query->error;
                 $query->close();
-                return "Error al realizar la consulta: ".$query->error;
+                return $error;
             }
         }
 
