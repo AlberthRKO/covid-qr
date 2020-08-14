@@ -31,6 +31,8 @@ $('#btnGuardar').click(function(e){
 $('#listarPuntosHospitales').click(function(){
     setTodosHospitales();
     dibujarMapaHospital(hospitales, true);
+    $('#btnGuardarUbicacion').fadeOut();
+    $('#modalMapaTitulo').html("LISTADO DE HOSPITALES EN EL MAPA");
     $('#mapa').modal("show");
 });
 
@@ -189,6 +191,8 @@ function mostrarEditarHospitalModal(idHospital) {
     $('#nombre').val(nombre);
     $('#ejeX').val(ejeX);
     $('#ejeY').val(ejeY);
+    $('#btnGuardarUbicacion').fadeIn();
+    $('#modalMapaTitulo').html("INDIQUE LA UBICACIÓN");
     $('#editarHospital').modal("show");
 }
 

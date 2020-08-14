@@ -12,6 +12,8 @@ $(document).ready(function () {
 $('#listarPuntos').click(function () {
     getTodasUbicaciones();
     dibujarMapa(ubicaciones, true);
+    $('#btnGuardarUbicacion').fadeOut();
+    $('#modalMapaTitulo').html("PUNTOS QR EN EL MAPA");
     $('#mapa').modal("show");
 });
 
@@ -169,6 +171,8 @@ function mostrarEditarQRModal(idUbicacion) {
     $('#nombre').val(nombre);
     $('#ejeX').val(ejeX);
     $('#ejeY').val(ejeY);
+    $('#btnGuardarUbicacion').fadeIn();
+    $('#modalMapaTitulo').html("INDIQUE LA UBICACIÓN");
     $("#editarQR").modal("show");
 }
 
@@ -195,8 +199,21 @@ function mostrarImprimirQRModal(idUbicacion) {
         fill: '#1620AC',
         text: `${idUbicacion}:${nombre}:${riesgo}:${ejeX}:${ejeY}`//idUbicacion:Lugar:Riesgo:latitud:longitud
     });
+    descripcion = getDescripcion(idUbicacion);
+    $('#descripcionQR').html(descripcion);
     mostrarqr();
     $('#imprimirQR').modal("show");
+}
+
+function getDescripcion(idUbicacion){
+    let descripcion;
+    ubicaciones.forEach(ubicacion =>{
+        if(ubicacion.idUbicacion == idUbicacion){
+            descripcion = ubicacion.descripcion;
+            return;
+        }
+    });
+    return descripcion;
 }
 
 function mostrarqr() {
