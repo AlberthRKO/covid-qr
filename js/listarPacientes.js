@@ -3,13 +3,33 @@ var usuariosConfirmados = new Array();
 var actualIdUsuario;
 var estados = new Array();
 var ubicaciones = new Array();
+var hospitalUsuario;
+var hospitales = new Array();
 
 $(document).ready(function () {
     llenarEstados();
     comprobarAdmin();
     getTodosUsuarios();
     listarUsuarios();
+    getTodosHospitales();
 });
+
+function getTodosHospitales(){
+    url = "php/controlador/ControladorHospital.php";
+    data = {
+        'request': 'getTodosHospitales'
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                hospitales = JSON.parse(result.trim());
+        }
+    });
+}
 
 function llenarEstados() {
     estados[0] = '<option disabled selected>Estado</option>';
@@ -111,8 +131,47 @@ function mostrarEditarUsuarioModal(idUsuario) {
     $('#ci').val(ci);
     $('#extension').val(extension);
 
+    getHospitalUsuario(idUsuario);
     llenarSelect(estado);
+    llenarSelectHospitales(estado);
     $('#editar').modal("show");
+}
+
+function llenarSelectHospitales(estado){
+    let html = "<option selected disabled value='0'>En Casa</option>";
+    hospitales.forEach(hospital => {
+        html += `<option value="${hospital.idHospital}">${hospital.nombre}</option>`;
+    });
+
+    $('#selectHospital').html(html);
+
+    if(hospitalUsuario != "empty")//Validamos si el usuario esta en algun hospital para seleccionarlo
+        $('#selectHospital').val(hospitalUsuario.idHospital);
+    
+    if(estado == "CONFIRMADO")//Solo cuando el paciente se encuentra en estado confirmado se puede seleccionar un hospital
+        $('#selectHospital').prop("disabled",false);
+    else
+        $('#selectHospital').prop("disabled",true);
+}
+
+function getHospitalUsuario(idUsuario){
+    let url = "php/controlador/ControladorHospitalUsuario.php";
+    data = {
+        request: 'getHospitalUsuario',
+        idUsuario: idUsuario
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if(result.trim() != "empty")
+                hospitalUsuario = JSON.parse(result);
+            else
+                hospitalUsuario = result;
+        }
+    });
 }
 
 function llenarSelect(estado) {
@@ -258,7 +317,9 @@ function editar() {
             console.log(result);
         }
     });
-    $('#btnCancelar').click();
+
+    actualizarHospitalUsuario();
+    
     let usuario = {
         idUsuario: actualIdUsuario,
         ci: ci,
@@ -268,6 +329,48 @@ function editar() {
         estado: estado
     }
     editarFila(usuario);
+}
+
+function actualizarHospitalUsuario(){
+    let idHospital = $('#selectHospital').val();
+    if(idHospital > 0){
+        if(hospitalUsuario != "empty")
+            editarHospitalUsuario(idHospital);
+        else
+            insertarHospitalUsuario(idHospital);
+    }
+}
+
+function editarHospitalUsuario(idHospital){
+    let idUsuario = actualIdUsuario;
+    let url = "php/controlador/ControladorHospitalUsuario.php";
+    data = {
+        request: 'editar',
+        idUsuario: idUsuario,
+        idHospital: idHospital
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data
+    });
+}
+
+function insertarHospitalUsuario(idHospital){
+    let idUsuario = actualIdUsuario;
+    let url = "php/controlador/ControladorHospitalUsuario.php";
+    data = {
+        request: 'insertar',
+        idUsuario: idUsuario,
+        idHospital: idHospital
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data
+    });
 }
 
 function editarFila(usuario) {
@@ -280,6 +383,7 @@ function editarFila(usuario) {
         let etiquetaEstado = getEtiquetaEstado(usuario);
         $('#filaEstado' + idUsuario).html(etiquetaEstado);
     }
+    $('#btnCancelar').click();
     swal("Guardado", "Editado exitosamente !", "success");
 }
 
@@ -329,7 +433,6 @@ function getEtiquetaEstado(usuario) {
 }
 
 $('.filterable .btn-filter').click(function () {
-    // console.log("S");
     var $panel = $(this).parents('.filterable');
     $filters = $panel.find('.filters input');
     $labels = $panel.find('.filters .label');
@@ -384,8 +487,14 @@ $('.filterable .filters input').keyup(function (e) {
 
 
 
-const estadito = document.querySelector('#estado')
+const estadito = document.querySelector('#estado');
 
 estadito.addEventListener("change", () => {
-    $('#selectHospital').addClass('d-block')
-})
+    let estado = $("#estado").val();
+    if(estado == "CONFIRMADO")
+        $('#selectHospital').prop("disabled",false);
+    else
+        $('#selectHospital').prop("disabled",true);
+    /*if(hospital.activo == "1")
+        $('#selectHospital').fadeIn();*/
+});

@@ -389,8 +389,7 @@
             <div class="modal-content">
                 <!-- Contenido del modal -->
                 <div class="modal-header">
-                    <h4 class="modal-title text-uppercase">Pacientes del Hospital <span class="font-weight-bold">Santa
-                            Barbara</span></h4>
+                    <h4 class="modal-title text-uppercase">Pacientes del Hospital <span class="font-weight-bold" id="nombreHospital"></span></h4>
                     <!-- data-dismis cierra el modal  -->
                     <button type="button" class="close" style="outline: 0;" data-dismiss="modal">&times;</button>
                 </div>
@@ -409,32 +408,7 @@
                                     <th>Estado</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabla">
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>10154580</td>
-                                    <td>Ronald</td>
-                                    <td>Perez</td>
-                                    <td>CH.</td>
-                                    <td><span class="badge badge-primary">CONFIRMADO</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>10154547</td>
-                                    <td>Ezequiel Talabera</td>
-                                    <td>Perez</td>
-                                    <td>TJ.</td>
-                                    <td><span class="badge badge-success">RECUPERADO</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>10154588</td>
-                                    <td>Richard</td>
-                                    <td>Guzman</td>
-                                    <td>PD.</td>
-                                    <td><span class="badge badge-danger">FALLECIDO</span></td>
-                                </tr>
+                            <tbody id="tablaUsarios">
 
                             </tbody>
 
@@ -507,7 +481,7 @@
     <!-- BEGIN VENDOR JS-->
 
 
-    <script src="js/listarHospital.js?v=2"></script>
+    <script src="js/listarHospital.js?v=3"></script>
 
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="app-assets/vendors/js/sweetalert2.min.js" type="text/javascript"></script>

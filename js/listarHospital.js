@@ -1,12 +1,39 @@
 var hospitales = new Array();
+var cantidadUsuariosHospitales = new Array();
 var actualIdHospital;
 var estados = new Array();
+var usuarios = new Array();
 
 $(document).ready(function () {
     comprobarAdmin();
     getTodosHospitales();
+    getUsuariosTodosHospitales();
     listarHospitales();
+    llenarCantidades();
 });
+
+function getUsuariosTodosHospitales(){
+    url = "php/controlador/ControladorHospital.php";
+    data = {
+        'request': 'getUsuariosTodosHospitales'
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                cantidadUsuariosHospitales = JSON.parse(result.trim());
+        }
+    });
+}
+
+function llenarCantidades(){//Las cantidades de pacientes se llenan inicialmente en 0, esta funcion llena las cantidades de los hospitales reales
+    cantidadUsuariosHospitales.forEach(cantidadHospital => {
+        $('#cantidad'+cantidadHospital.idHospital).html(cantidadHospital.cantidad);
+    });
+}
 
 $('#btnUbicacion').click(function(){
     ejeX = $('#ejeX').val();
@@ -16,7 +43,7 @@ $('#btnUbicacion').click(function(){
         ejeX: ejeX,
         ejeY: ejeY
     }
-    setTodosHospitales();
+    getTodosHospitales();
     editMapHospitales(ubicacion, hospitales);
 });
 
@@ -29,7 +56,7 @@ $('#btnGuardar').click(function(e){
 });
 
 $('#listarPuntosHospitales').click(function(){
-    setTodosHospitales();
+    getTodosHospitales();
     dibujarMapaHospital(hospitales, true);
     $('#btnGuardarUbicacion').fadeOut();
     $('#modalMapaTitulo').html("LISTADO DE HOSPITALES EN EL MAPA");
@@ -102,23 +129,6 @@ function editar(){
     editarFila(hospital);
 }
 
-function setTodosHospitales(){
-    url = "php/controlador/ControladorHospital.php";
-    data = {
-        'request': 'getTodosHospitales'
-    };
-    $.ajax({
-        url: url,
-        type: "POST",
-        async: false,
-        data: data,
-        success: function (result) {
-            if (result.trim() != "empty")
-                hospitales = JSON.parse(result.trim());
-        }
-    });
-}
-
 function comprobarAdmin() {
     if (sessionStorage.usuario) {
         usuario = JSON.parse(sessionStorage.usuario);
@@ -146,19 +156,17 @@ function getTodosHospitales() {
 }
 
 function listarHospitales() {
-    let cantidad = 5;
     hospitales.forEach(hospital => {
         let idHospital = hospital.idHospital;
         let nombre = hospital.nombre;
         let ejeX = hospital.ejeX;
         let ejeY = hospital.ejeY;
-        cantidad += 1;//falta calcular la cantidad de pacientes 
         let html = `<tr id="fila${idHospital}">
                         <td>${idHospital}</td>
                         <td id="nombre${idHospital}">${nombre}</td>
                         <td id="ejeX${idHospital}">${ejeX}</td>
                         <td id="ejeY${idHospital}">${ejeY}</td>
-                        <td id="cantidad${idHospital}">${cantidad}</td>
+                        <td id="cantidad${idHospital}">0</td>
                         <td>
                             <a class="success p-0" data-original-title="" title=""
                                 data-toggle="modal" onclick="mostrarEditarHospitalModal(${idHospital})">
@@ -169,7 +177,7 @@ function listarHospitales() {
                                 <i class="icon-close font-medium-3 mr-2"></i>
                             </a>
                             <a class="dark p-0" data-original-title="" title=""
-                                data-toggle="modal" onclick="mostrarHospitalPacientesModal(${idHospital})">
+                                data-toggle="modal" onclick="mostrarHospitalPacientesModal(${idHospital},'${nombre}')">
                                 <i class="icon-people font-medium-3 mr-2"></i>
                             </a>
                         </td>
@@ -178,8 +186,67 @@ function listarHospitales() {
     });
 }
 
-function mostrarHospitalPacientesModal(idHospital){
+function mostrarHospitalPacientesModal(idHospital,nombre){
+    getTodosUsuariosHospitalizados(idHospital);
+    $('#nombreHospital').html(nombre);
+    listarUsuarios();
     $('#verPacientes').modal("show");
+}
+
+function getTodosUsuariosHospitalizados(idHospital){
+    url = "php/controlador/ControladorHospitalUsuario.php";
+    data = {
+        request: 'getTodosUsuariosHospitalizados',
+        idHospital: idHospital
+    };
+    $.ajax({
+        url: url,
+        type: "POST",
+        async: false,
+        data: data,
+        success: function (result) {
+            if (result.trim() != "empty")
+                usuarios = JSON.parse(result.trim());
+            else
+                usuarios = new Array();
+        }
+    });
+}
+
+function listarUsuarios(){
+    let html = "";
+    usuarios.forEach(usuario => {
+        let idUsuario = usuario.idUsuario;
+        let nombres = usuario.nombres;
+        let apellidos = usuario.apellidos;
+        let ci = usuario.ci.substr(0, usuario.ci.length - 3);
+        let extension = usuario.ci.substr(usuario.ci.length - 3, usuario.ci.length);
+        let etiquetaEstado = getEtiquetaEstado(usuario);
+        html += `<tr>
+                    <td>${idUsuario}</td>
+                    <td>${ci}</td>
+                    <td>${nombres}</td>
+                    <td>${apellidos}</td>
+                    <td>${extension}</td>
+                    <td>${etiquetaEstado}</td>
+                </tr>`;
+    });
+    $('#tablaUsarios').html(html);
+}
+
+function getEtiquetaEstado(usuario) {
+    let estadoHtml;
+
+    if (usuario.estado == "NORMAL")
+        estadoHtml = `<span class="badge badge-light" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
+    if (usuario.estado == "CONFIRMADO")
+        estadoHtml = `<span class="badge badge-primary" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
+    if (usuario.estado == "RECUPERADO")
+        estadoHtml = `<span class="badge badge-success" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
+    if (usuario.estado == "FALLECIDO")
+        estadoHtml = `<span class="badge badge-danger" id="estado${usuario.idUsuario}">${usuario.estado}</span>`;
+
+    return estadoHtml;
 }
 
 function mostrarEditarHospitalModal(idHospital) {

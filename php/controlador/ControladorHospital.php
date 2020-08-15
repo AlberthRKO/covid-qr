@@ -29,5 +29,12 @@
       else
         echo "empty";
     break;
+    case "getUsuariosTodosHospitales":
+      $cantidadUsuariosHospitales = Hospital::getUsuariosTodosHospitales();
+      if($cantidadUsuariosHospitales != null)
+        echo json_encode($cantidadUsuariosHospitales);
+      else
+        echo "empty";
+    break;
   }
 ?>

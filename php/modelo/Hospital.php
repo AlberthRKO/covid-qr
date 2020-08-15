@@ -93,6 +93,47 @@
             } else
                 exit('Error al realizar la consulta: '.$query->close());
         }
+
+        public static function getUsuariosTodosHospitales(){
+            include('../connection.php');
+            $query = $db->prepare("SELECT H.IDHOSPITAL,H.NOMBRE,COUNT(HU.IDUSUARIO)
+                                   FROM hospitales H INNER JOIN hospitalusuarios HU
+                                   ON H.IDHOSPITAL=HU.IDHOSPITAL
+                                   INNER JOIN usuarios U ON U.IDUSUARIO=HU.IDUSUARIO
+                                   WHERE U.ACTIVO='1' AND U.ESTADO='CONFIRMADO'
+                                   GROUP BY H.IDHOSPITAL");
+
+            $cantidadUsuariosHospitales = array();
+            //Ejecutamos la consulta
+            if($query->execute()){
+                
+                //Alamacenaos los datos de la consulta
+                $query->store_result();
+                
+                if($query->num_rows == 0)
+                    return null;
+                
+                //Indicamos la variable donde se guardaran los resultados
+                $query->bind_result($idHospital, $nombre, $cantidad);
+                
+                //listamos todos los resultados
+                while($query->fetch()){
+                    $cantidadUsuarioHospitalActual = [
+                        'idHospital' => $idHospital,
+                        'nombre' => $nombre,
+                        'cantidad' => $cantidad
+                    ];
+                    array_push($cantidadUsuariosHospitales, $cantidadUsuarioHospitalActual);
+                }
+                //Cerramos la conexion
+                $query->close();
+                return $cantidadUsuariosHospitales;
+                
+            } else
+                exit('Error al realizar la consulta: '.$query->close());
+        }
+
+        
         
     }
 ?>
