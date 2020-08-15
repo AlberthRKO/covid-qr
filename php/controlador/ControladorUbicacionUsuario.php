@@ -43,6 +43,14 @@
       }
       echo $gravedad;
     break;
+    case "getQRRegistrados":
+      $idUsuario = $_POST['idUsuario'];
+      $ubicaciones = UbicacionUsuario::getQRRegistrados($idUsuario);
+      if(count($ubicaciones) > 0)
+        echo json_encode($ubicaciones);
+      else
+        echo "empty";
+    break;
   }
                   ///y       x      y     x pero para nosotros al reves por gil
   function distance($lat1, $lon1, $lat2, $lon2) {

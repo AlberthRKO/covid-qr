@@ -66,6 +66,45 @@
             } else
                 exit('Error al realizar la consulta: '.$query->close());
         }
+
+        public static function getQRRegistrados($idUsuario){
+            include('../connection.php');
+            $query = $db->prepare("SELECT UU.IDUBICACIONUSUARIO,UB.NOMBRE,UU.FECHA,UU.IDUSUARIO,UU.IDUBICACION
+                                   FROM usuarios U INNER JOIN ubicacionusuarios UU
+                                   ON U.IDUSUARIO=UU.IDUSUARIO INNER JOIN ubicaciones UB
+                                   ON UB.IDUBICACION=UU.IDUBICACION
+                                   WHERE U.IDUSUARIO=?");
+            $query->bind_param("i", $idUsuario);
+            $ubicaciones = array();
+            //Ejecutamos la consulta
+            if($query->execute()){
+                //Alamacenaos los datos de la consulta
+                $query->store_result();
+                
+                if($query->num_rows == 0)
+                    return null;
+                
+                //Indicamos la variable donde se guardaran los resultados
+                $query->bind_result($idUbicacionUsuario,$nombre,$fecha,$idUsuario,$idUbicacion);
+                
+                //listamos todos los resultados
+                while($query->fetch()){
+                    $ubicacion = [
+                        'idUbicacionUsuario' => $idUbicacionUsuario,
+                        'nombre' => $nombre,
+                        'fecha' => $fecha,
+                        'idUsuario' => $idUsuario,
+                        'idUbicacion' => $idUbicacion
+                    ];
+                    array_push($ubicaciones,$ubicacion);
+                }
+                //Cerramos la conexion
+                $query->close();
+                return $ubicaciones;
+                
+            } else
+                exit('Error al realizar la consulta: '.$query->close());
+        }
         
     }
 ?>
