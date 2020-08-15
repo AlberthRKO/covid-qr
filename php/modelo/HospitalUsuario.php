@@ -85,7 +85,7 @@
         public static function getHospitalUsuario($idUsuario){
             include('../connection.php');
             $query = $db->prepare("SELECT H.IDHOSPITAL,H.NOMBRE,H.EJEX,H.EJEY,H.DESCRIPCION,HU.ACTIVO
-                                   FROM hospitales h INNER JOIN hospitalusuarios HU ON H.IDHOSPITAL=HU.IDHOSPITAL
+                                   FROM hospitales H INNER JOIN hospitalusuarios HU ON H.IDHOSPITAL=HU.IDHOSPITAL
                                    WHERE HU.IDUSUARIO=?");
             $query->bind_param("i", $idUsuario);
             $hospital = null;
