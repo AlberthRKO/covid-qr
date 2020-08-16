@@ -60,5 +60,32 @@
       else
         echo "empty";
     break;
+    case "getTodosUsuariosConfirmadosCercanosQR":
+      $latitud = $_POST['ejeX'];
+      $longitud = $_POST['ejeY'];
+      $usuarios = Usuario::getTodosUsuariosConfirmados();
+      $usuariosCercanos = array();
+      foreach($usuarios as $usuario){
+        $distancia = distance($usuario->ejeX,$usuario->ejeY,$latitud,$longitud);
+        if($distancia < 110)
+          array_push($usuariosCercanos, $usuario);
+      }
+      if(count($usuariosCercanos) > 0)
+        echo json_encode($usuariosCercanos);
+      else
+        echo "empty";
+    break;
+  }
+
+  function distance($lat1, $lon1, $lat2, $lon2) {
+
+    $theta = $lon1 - $lon2;
+    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+    $dist = acos($dist);
+    $dist = rad2deg($dist);
+    $km = $dist * 60 * 1.1515 * 1.609344;
+    $metros = $km*1000;
+
+    return $metros;
   }
 ?>
