@@ -16,9 +16,8 @@ function hayError(){
 
     if(errorCi || errorContrasena || errorUsuario)
         return true;
-    else{
+    else
         sessionStorage.usuario = JSON.stringify(usuario);
-    }
 }
 
 function validarCi(ci){
@@ -78,3 +77,7 @@ function validarUsuario(usuario){
         return true;
     }
 }
+
+$(document).ready(function(){
+    sessionStorage.removeItem("usuario");
+});
