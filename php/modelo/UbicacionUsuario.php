@@ -73,7 +73,7 @@
                                    FROM usuarios U INNER JOIN ubicacionusuarios UU
                                    ON U.IDUSUARIO=UU.IDUSUARIO INNER JOIN ubicaciones UB
                                    ON UB.IDUBICACION=UU.IDUBICACION
-                                   WHERE U.IDUSUARIO=?
+                                   WHERE U.IDUSUARIO=? AND DAY(UU.FECHA)=DAY(NOW()) AND MONTH(UU.FECHA)=MONTH(NOW()) AND YEAR(FECHA)=YEAR(NOW())
                                    ORDER BY UU.FECHA DESC");
                                    
             $query->bind_param("i", $idUsuario);
