@@ -19,7 +19,10 @@
 
         public static function insertar($ubicacionUsuario){
             include('../connection.php');
-            $query = $db->prepare("INSERT INTO ubicacionusuarios(FECHA,IDUSUARIO,IDUBICACION)VALUES(NOW(),?,?)");
+            date_default_timezone_set ("America/La_Paz");
+            $hoy = getdate();
+            $now = $hoy['year']."/".$hoy['mon']."/".$hoy['mday']." ".$hoy['hours'].":".$hoy['minutes'].":".$hoy['seconds'];
+            $query = $db->prepare("INSERT INTO ubicacionusuarios(FECHA,IDUSUARIO,IDUBICACION)VALUES('$now',?,?)");
 
             $query->bind_param("ii", $ubicacionUsuario->idUsuario, $ubicacionUsuario->idUbicacion);
 
